@@ -29,10 +29,6 @@ class TripStore {
   };
 
   editTrip = async (updatedTrip) => {
-    console.log(
-      "🚀 ~ file: tripStore.js ~ line 35 ~ TripStore ~ editTrip= ~ updatedTrip",
-      updatedTrip.id
-    );
     try {
       await instance.put(`/trips/${updatedTrip.id}`, updatedTrip);
 
@@ -44,10 +40,6 @@ class TripStore {
   };
 
   deleteTrip = async (tripId) => {
-    console.log(
-      "🚀 ~ file: tripStore.js ~ line 51 ~ TripStore ~ deleteTrip ~ tripId",
-      tripId
-    );
     try {
       await instance.delete(`/trips/${tripId}`);
 
