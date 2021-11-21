@@ -9,7 +9,6 @@ class TripStore {
     makeAutoObservable(this);
   }
 
-  //fetch
   fetchTrips = async () => {
     try {
       const response = await instance.get("/trips");
@@ -20,7 +19,6 @@ class TripStore {
     }
   };
 
-  //add trip
   addTrip = async (newTrip) => {
     try {
       const response = await instance.post("/trips", newTrip);
@@ -30,7 +28,6 @@ class TripStore {
     }
   };
 
-  //edit trip
   editTrip = async (updatedTrip) => {
     console.log(
       "🚀 ~ file: tripStore.js ~ line 35 ~ TripStore ~ editTrip= ~ updatedTrip",
@@ -46,7 +43,6 @@ class TripStore {
     }
   };
 
-  //delete trip
   deleteTrip = async (tripId) => {
     console.log(
       "🚀 ~ file: tripStore.js ~ line 51 ~ TripStore ~ deleteTrip ~ tripId",
@@ -61,7 +57,6 @@ class TripStore {
     }
   };
 
-  //find user
   findUser = async (userId) => {
     try {
       const response = await instance.get(`/users/${userId}`);
