@@ -38,11 +38,11 @@ class AuthStore {
     }
   };
 
-  signin = async (user, navigation, toast) => {
+  Login = async (user, navigation, toast) => {
     try {
-      const res = await instance.post("/signin", user);
+      const res = await instance.post("/Login", user);
       this.setUser(res.data.token);
-      navigation.goBack();
+      //   navigation.navigate("mainPage");
     } catch (error) {
       toast.show({
         status: "error",
