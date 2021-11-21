@@ -16,6 +16,8 @@ const Signup = ({ navigation }) => {
   const toast = useToast();
 
   const [user, setUser] = useState({
+    fistname: "",
+    lastname: "",
     username: "",
     password: "",
   });
@@ -40,12 +42,14 @@ const Signup = ({ navigation }) => {
           style={styles.box}
           placeholder="  First Name"
           placeholderTextColor="#858585"
+          onChangeText={(firstname) => setUser({ ...firstname, firstname })}
         />
         <Text style={styles.outsidebox}>Last Name</Text>
         <TextInput
           style={styles.box}
           placeholder="  Last Name"
           placeholderTextColor="#858585"
+          onChangeText={(lastname) => setUser({ ...lastname, lastname })}
         />
         <Text style={styles.outsidebox}>Password</Text>
         <TextInput
