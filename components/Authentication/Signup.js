@@ -1,14 +1,6 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
-import {
-  Text,
-  TextInput,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  Input,
-  FormControl,
-} from "react-native";
+import { Text, TextInput, View, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Pressable, useToast } from "native-base";
 import authStore from "../../stores/authStore";
@@ -125,14 +117,6 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: "#4B0082",
   },
-  /*signature:{
-    alignContent:'center',
-    justifyContent:'center',
-    marginTop:100,
-    margin:10,
-    color:'#858585',
-    },
-*/
   outsidebox: {
     marginHorizontal: 22,
     color: "white",

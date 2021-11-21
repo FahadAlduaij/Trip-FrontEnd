@@ -62,7 +62,6 @@ const Login = ({ navigation }) => {
           </Pressable>
         </Text>
       </View>
-      {/*</LinearGradient>*/}
     </SafeAreaView>
   );
 };
@@ -101,14 +100,6 @@ const styles = StyleSheet.create({
     height: 55,
     padding: 15,
   },
-  /*signature:{
-    alignContent:'center',
-    justifyContent:'center',
-    marginTop:100,
-    margin:10,
-    color:'#858585',
-    },
-*/
   outsidebox: {
     marginHorizontal: 22,
     color: "white",
