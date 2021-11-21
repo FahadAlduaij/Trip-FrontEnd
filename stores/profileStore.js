@@ -1,6 +1,5 @@
 import instance from "./instance";
 import { makeAutoObservable } from "mobx";
-import authStore from "../stores/authStore";
 
 class ProfileStore {
   profile = null;
