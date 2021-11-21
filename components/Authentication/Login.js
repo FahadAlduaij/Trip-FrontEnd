@@ -1,60 +1,29 @@
 import "react-native-gesture-handler";
-import React, { useState } from "react";
-import {
-  Text,
-  TextInput,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  Input,
-  FormControl,
-} from "react-native";
+import React from "react";
+import { Text, TextInput, View, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Pressable, useToast } from "native-base";
 
-const Signup = ({ navigation }) => {
-  const toast = useToast();
-
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-
-  const handleSubmit = () => {
-    authStore.signup(user, navigation, toast);
-  };
-
+const Login = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.body}>
+      {/*<LinearGradient start={[0, 0.5]} end={[1, 0.5]} colors={['#EFBB35', '#4AAE9B']} style={{borderRadius:10}}>*/}
       <View style={styles.container}>
-        <Text style={styles.login}>Sign up</Text>
+        <Text style={styles.login}>Log in</Text>
         <Text style={styles.outsidebox}>Username</Text>
         <TextInput
           style={styles.box}
-          placeholder="  Username"
-          placeholderTextColor="#858585"
-          onChangeText={(username) => setUser({ ...user, username })}
-        />
-        <Text style={styles.outsidebox}>First Name</Text>
-        <TextInput
-          style={styles.box}
-          placeholder="  First Name"
-          placeholderTextColor="#858585"
-        />
-        <Text style={styles.outsidebox}>Last Name</Text>
-        <TextInput
-          style={styles.box}
-          placeholder="  Last Name"
+          placeholder="  Enter your username"
           placeholderTextColor="#858585"
         />
         <Text style={styles.outsidebox}>Password</Text>
         <TextInput
-          style={styles.box}
           type="password"
-          placeholder="  Pick a strong password"
+          style={styles.box}
+          placeholder="  Enter your password"
           placeholderTextColor="#858585"
-          onChangeText={(password) => setUser({ ...user, password })}
         />
+        {/*<TouchableOpacity style={styles.button}><Text style={{color:"#ffff", alignSelf:'center', textAlignVertical:'auto'}}>Log in</Text></TouchableOpacity>*/}
         <LinearGradient
           colors={["#1e81b0", "#154c79"]}
           style={styles.button}
@@ -69,23 +38,24 @@ const Signup = ({ navigation }) => {
               fontSize: 20,
             }}
           >
-            Create account
+            Log in
           </Text>
         </LinearGradient>
         <Text style={styles.signup}>
-          Already have an account?{" "}
-          <Pressable onPress={() => navigation.navigate("Login")}>
-            <Text style={{ color: "#ffff" }}>Log in</Text>
+          Dont have an account?
+          <Pressable onPress={() => navigation.navigate("Signup")}>
+            <Text style={{ color: "#ffff" }}> Sign up</Text>
           </Pressable>
         </Text>
       </View>
+      {/*</LinearGradient>*/}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 60,
+    marginTop: 80,
     marginLeft: 10,
   },
   body: {
@@ -116,7 +86,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 55,
     padding: 15,
-    backgroundColor: "#4B0082",
   },
   /*signature:{
     alignContent:'center',
@@ -144,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Signup;
+export default Login;

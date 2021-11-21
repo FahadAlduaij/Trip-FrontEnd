@@ -2,43 +2,41 @@ import "react-native-gesture-handler";
 import React from "react";
 import {
   Text,
-  TextInput,
   View,
   SafeAreaView,
   StyleSheet,
-  Button,
   TouchableOpacity,
   Image,
   ImageBackground,
 } from "react-native";
-import { IoIosArrowDropleft } from "react-icons/io";
-import { LinearGradient } from "expo-linear-gradient";
+import Signup from "../Authentication/Signup";
+import { Pressable } from "native-base";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.body}>
-      {/* <LinearGradient start={[0, 0.5]} end={[1, 0.5]} colors={['#EFBB35', '#4AAE9B']} style={{borderRadius:10}}> */}
       <ImageBackground
-        source={require("../images/background.jpg")}
+        source={require("../images/cover.gif")}
         style={styles.image}
       >
         <View style={styles.container}>
           <Image source={require("../images/logo.png")} style={styles.logo} />
           <TouchableOpacity style={styles.button}>
-            <Text
-              style={{
-                color: "#ffff",
-                alignSelf: "center",
-                textAlignVertical: "auto",
-                fontSize: 23,
-                fontWeight: "bold",
-              }}
-            >
-              Get started
-            </Text>
+            <Pressable onPress={() => navigation.navigate("Signup")}>
+              <Text
+                style={{
+                  color: "#ffff",
+                  alignSelf: "center",
+                  textAlignVertical: "auto",
+                  fontSize: 23,
+                  fontWeight: "bold",
+                }}
+              >
+                Get started
+              </Text>
+            </Pressable>
           </TouchableOpacity>
         </View>
-        {/*</LinearGradient>*/}
       </ImageBackground>
     </SafeAreaView>
   );
@@ -71,9 +69,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     alignSelf: "center",
-    height: 100,
-    width: 87,
-    marginTop: -15,
+    height: 150,
+    width: 130,
+    marginTop: -40,
   },
   body: {
     flex: 1,

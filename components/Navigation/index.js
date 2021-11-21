@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../Home";
-import Signin from "../Authentication/Signin";
+import Login from "../Authentication/Login";
 import Signup from "../Authentication/Signup";
 
 const RootNavigator = () => {
@@ -9,6 +9,8 @@ const RootNavigator = () => {
   return (
     <Navigator initialRouteName="Home">
       <Screen name="Home" component={Home} options={{}} />
+      <Screen name="Signup" component={Signup} />
+      <Screen name="Login" component={Login} />
     </Navigator>
   );
 };
