@@ -18,7 +18,7 @@ class TripStore {
     } catch (error) {
       console.error("tripStore --> fetchTrips", error);
     }
-  }; //end fetch
+  };
 
   //add trip
   addTrip = async (newTrip) => {
@@ -28,7 +28,7 @@ class TripStore {
     } catch (error) {
       console.error("tripStore --> addTrip", error);
     }
-  }; //end add trip
+  };
 
   //edit trip
   editTrip = async (updatedTrip) => {
@@ -44,7 +44,7 @@ class TripStore {
     } catch (error) {
       console.error("tripStore --> editTrip", error);
     }
-  }; //end edit trip
+  };
 
   //delete trip
   deleteTrip = async (tripId) => {
@@ -70,7 +70,7 @@ class TripStore {
       console.log("TripStore -> findUser -> error", error);
     }
   };
-} //end class
+}
 
 const tripStore = new TripStore();
 tripStore.fetchTrips();
