@@ -3,11 +3,22 @@ import React from "react";
 import { Text, TextInput, View, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Pressable, useToast } from "native-base";
+import authStore from "../../stores/authStore";
 
 const Login = ({ navigation }) => {
+  const toast = useToast();
+
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleSubmit = () => {
+    authStore.signin(user, navigation, toast);
+  };
+
   return (
     <SafeAreaView style={styles.body}>
-      {/*<LinearGradient start={[0, 0.5]} end={[1, 0.5]} colors={['#EFBB35', '#4AAE9B']} style={{borderRadius:10}}>*/}
       <View style={styles.container}>
         <Text style={styles.login}>Log in</Text>
         <Text style={styles.outsidebox}>Username</Text>
@@ -15,6 +26,7 @@ const Login = ({ navigation }) => {
           style={styles.box}
           placeholder="  Enter your username"
           placeholderTextColor="#858585"
+          onChangeText={(username) => setUser({ ...user, username })}
         />
         <Text style={styles.outsidebox}>Password</Text>
         <TextInput
@@ -22,24 +34,26 @@ const Login = ({ navigation }) => {
           style={styles.box}
           placeholder="  Enter your password"
           placeholderTextColor="#858585"
+          onChangeText={(password) => setUser({ ...user, password })}
         />
-        {/*<TouchableOpacity style={styles.button}><Text style={{color:"#ffff", alignSelf:'center', textAlignVertical:'auto'}}>Log in</Text></TouchableOpacity>*/}
         <LinearGradient
           colors={["#1e81b0", "#154c79"]}
           style={styles.button}
           start={{ y: 0.0, x: 0.0 }}
           end={{ y: 0.0, x: 1.0 }}
         >
-          <Text
-            style={{
-              color: "#ffff",
-              alignSelf: "center",
-              textAlignVertical: "center",
-              fontSize: 20,
-            }}
-          >
-            Log in
-          </Text>
+          <Pressable onPress={handleSubmit}>
+            <Text
+              style={{
+                color: "#ffff",
+                alignSelf: "center",
+                textAlignVertical: "center",
+                fontSize: 20,
+              }}
+            >
+              Log in
+            </Text>
+          </Pressable>
         </LinearGradient>
         <Text style={styles.signup}>
           Dont have an account?

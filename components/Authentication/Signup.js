@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Pressable, useToast } from "native-base";
+import authStore from "../../stores/authStore";
 
 const Signup = ({ navigation }) => {
   const toast = useToast();
@@ -65,16 +66,18 @@ const Signup = ({ navigation }) => {
           start={{ y: 0.0, x: 0.0 }}
           end={{ y: 0.0, x: 1.0 }}
         >
-          <Text
-            style={{
-              color: "#ffff",
-              alignSelf: "center",
-              textAlignVertical: "center",
-              fontSize: 20,
-            }}
-          >
-            Create account
-          </Text>
+          <Pressable onPress={handleSubmit}>
+            <Text
+              style={{
+                color: "#ffff",
+                alignSelf: "center",
+                textAlignVertical: "center",
+                fontSize: 20,
+              }}
+            >
+              Create account
+            </Text>
+          </Pressable>
         </LinearGradient>
         <Text style={styles.signup}>
           Already have an account?{" "}
