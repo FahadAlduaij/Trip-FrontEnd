@@ -30,7 +30,7 @@ const Signin = ({ navigation }) => {
         />
         <Text style={styles.outsidebox}>Password</Text>
         <TextInput
-          type="password"
+          secureTextEntry={true}
           style={styles.box}
           placeholder="  Enter your password"
           placeholderTextColor="#858585"

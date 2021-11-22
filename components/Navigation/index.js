@@ -10,7 +10,7 @@ import Search from "../screens/Search";
 const RootNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
   return (
-    <Navigator initialRouteName="timeline">
+    <Navigator initialRouteName="Home">
       <Screen name="Home" component={Home} options={{}} />
       <Screen name="Signin" component={Signin} />
       <Screen name="Signup" component={Signup} />

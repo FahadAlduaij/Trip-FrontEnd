@@ -47,7 +47,7 @@ const Signup = ({ navigation }) => {
         <Text style={styles.outsidebox}>Password</Text>
         <TextInput
           style={styles.box}
-          type="password"
+          secureTextEntry={true}
           placeholder="  Pick a strong password"
           placeholderTextColor="#858585"
           onChangeText={(password) => setUser({ ...user, password })}
