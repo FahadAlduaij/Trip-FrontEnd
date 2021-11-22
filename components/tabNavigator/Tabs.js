@@ -73,7 +73,7 @@ const Tabs = ({ navigation }) => {
               }}
             >
               <Image
-                source={require("../images/icons/timeline.png")}
+                source={require("../images/icons/Timelinee.png")}
                 resizeMode="contain"
                 style={{
                   width: 30,
