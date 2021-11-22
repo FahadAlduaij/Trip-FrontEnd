@@ -7,16 +7,16 @@ import timeline from "../timeline";
 import UserProfileMain from "../Profile/UserProfileMain";
 
 const RootNavigator = () => {
-  const { Navigator, Screen } = createStackNavigator();
-  return (
-    <Navigator initialRouteName="UserProfileMain">
-      <Screen name="Home" component={Home} options={{}} />
-      <Screen name="Signup" component={Signup} />
-      <Screen name="Login" component={Login} />
-      <Screen name="timeline" component={timeline} />
-      <Screen name="UserProfileMain" component={UserProfileMain} />
-    </Navigator>
-  );
+	const { Navigator, Screen } = createStackNavigator();
+	return (
+		<Navigator initialRouteName="Home">
+			<Screen name="Home" component={Home} options={{}} />
+			<Screen name="Signup" component={Signup} />
+			<Screen name="Login" component={Login} />
+			<Screen name="timeline" component={timeline} />
+			<Screen name="UserProfileMain" component={UserProfileMain} />
+		</Navigator>
+	);
 };
 
 export default RootNavigator;
