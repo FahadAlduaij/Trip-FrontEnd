@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
         <View style={styles.container}>
           <Image source={require("../images/logo.png")} style={styles.logo} />
           <TouchableOpacity style={styles.button}>
-            <Pressable onPress={() => navigation.navigate("Signup")}>
+            <Pressable onPress={() => navigation.navigate("Signin")}>
               <Text
                 style={{
                   color: "#ffff",
