@@ -35,14 +35,14 @@ const Signup = ({ navigation }) => {
           style={styles.box}
           placeholder="  First Name"
           placeholderTextColor="#858585"
-          onChangeText={(firstname) => setUser({ ...user, firstname })}
+          onChangeText={(firstName) => setUser({ ...user, firstName })}
         />
         <Text style={styles.outsidebox}>Last Name</Text>
         <TextInput
           style={styles.box}
           placeholder="  Last Name"
           placeholderTextColor="#858585"
-          onChangeText={(lastname) => setUser({ ...user, lastname })}
+          onChangeText={(lastName) => setUser({ ...user, lastName })}
         />
         <Text style={styles.outsidebox}>Password</Text>
         <TextInput
