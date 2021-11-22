@@ -10,13 +10,13 @@ import {
   ImageBackground,
 } from "react-native";
 import { Pressable } from "native-base";
-import Tabs from "./tabNavigator/Tabs";
+import Tabs from "../tabNavigator/Tabs";
 
 const timeline = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.body}>
       <ImageBackground
-        source={require("../components/images/background.jpg")}
+        source={require("../../components/images/background.jpg")}
         style={styles.image}
       >
         <View style={{ marginTop: 800 }}>

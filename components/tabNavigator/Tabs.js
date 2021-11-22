@@ -5,9 +5,11 @@ import { StyleSheet, Image, TouchableOpacity, View, Text } from "react-native";
 import { Pressable } from "native-base";
 import Home from "../Home/index";
 import UserProfileMain from "../Profile/UserProfileMain";
+import Search from "../screens/Search";
+import { useNavigation } from "@react-navigation/core";
 
 const Tab = createBottomTabNavigator();
-const CustomTabBarButton = ({ navigation }) => (
+const CustomTabBarButton = () => (
   <TouchableOpacity
     style={{
       top: -30,
@@ -41,7 +43,8 @@ const CustomTabBarButton = ({ navigation }) => (
   </TouchableOpacity>
 );
 
-const Tabs = ({ navigation }) => {
+const Tabs = () => {
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -72,27 +75,33 @@ const Tabs = ({ navigation }) => {
                 top: 10,
               }}
             >
-              <Image
-                source={require("../images/icons/Timelinee.png")}
-                resizeMode="contain"
-                style={{
-                  width: 30,
-                  height: 30,
-                  tintColor: focused ? "#00d0ff" : "#748c94",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#00d0ff" : "#748c94", fontSize: 12 }}
-              >
-                Timeline
-              </Text>
+              <Pressable onPress={() => navigation.navigate("timeline")}>
+                <Image
+                  source={require("../images/icons/Timelinee.png")}
+                  resizeMode="contain"
+                  style={{
+                    width: 30,
+                    height: 30,
+                    tintColor: focused ? "#00d0ff" : "#748c94",
+                    marginLeft: 8,
+                  }}
+                />
+                <Text
+                  style={{
+                    color: focused ? "#00d0ff" : "#748c94",
+                    fontSize: 12,
+                  }}
+                >
+                  Timeline
+                </Text>
+              </Pressable>
             </View>
           ),
         }}
       />
       <Tab.Screen
-        name="Find"
-        component={Home}
+        name="Explor"
+        component={Search}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -102,20 +111,25 @@ const Tabs = ({ navigation }) => {
                 top: 10,
               }}
             >
-              <Image
-                source={require("../images/icons/Explor.png")}
-                resizeMode="contain"
-                style={{
-                  width: 30,
-                  height: 30,
-                  tintColor: focused ? "#00d0ff" : "#748c94",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#00d0ff" : "#748c94", fontSize: 12 }}
-              >
-                Explor
-              </Text>
+              <Pressable onPress={() => navigation.navigate("Search")}>
+                <Image
+                  source={require("../images/icons/Explor.png")}
+                  resizeMode="contain"
+                  style={{
+                    width: 30,
+                    height: 30,
+                    tintColor: focused ? "#00d0ff" : "#748c94",
+                  }}
+                />
+                <Text
+                  style={{
+                    color: focused ? "#00d0ff" : "#748c94",
+                    fontSize: 12,
+                  }}
+                >
+                  Explor
+                </Text>
+              </Pressable>
             </View>
           ),
         }}
@@ -170,25 +184,26 @@ const Tabs = ({ navigation }) => {
                 top: 10,
               }}
             >
-              {/* <Pressable onPress={() => navigation.navigate("UserProfileMain")}> */}
-              <Image
-                source={require("../images/icons/profile.png")}
-                resizeMode="contain"
-                style={{
-                  width: 30,
-                  height: 30,
-                  tintColor: focused ? "#00d0ff" : "#748c94",
-                }}
-              />
-              <Text
-                style={{
-                  color: focused ? "#00d0ff" : "#748c94",
-                  fontSize: 12,
-                }}
-              >
-                Profile
-              </Text>
-              {/* </Pressable> */}
+              <Pressable onPress={() => navigation.navigate("UserProfileMain")}>
+                <Image
+                  source={require("../images/icons/profile.png")}
+                  resizeMode="contain"
+                  style={{
+                    width: 30,
+                    height: 30,
+                    tintColor: focused ? "#00d0ff" : "#748c94",
+                    marginLeft: 3,
+                  }}
+                />
+                <Text
+                  style={{
+                    color: focused ? "#00d0ff" : "#748c94",
+                    fontSize: 12,
+                  }}
+                >
+                  Profile
+                </Text>
+              </Pressable>
             </View>
           ),
         }}
