@@ -10,31 +10,17 @@ import {
   ImageBackground,
 } from "react-native";
 import { Pressable } from "native-base";
+import Tabs from "./tabNavigator/Tabs";
 
-const Home = ({ navigation }) => {
+const timeline = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.body}>
       <ImageBackground
-        source={require("../images/cover.gif")}
+        source={require("../components/images/background.jpg")}
         style={styles.image}
       >
-        <View style={styles.container}>
-          <Image source={require("../images/logo.png")} style={styles.logo} />
-          <TouchableOpacity style={styles.button}>
-            <Pressable onPress={() => navigation.navigate("Signup")}>
-              <Text
-                style={{
-                  color: "#ffff",
-                  alignSelf: "center",
-                  textAlignVertical: "auto",
-                  fontSize: 23,
-                  fontWeight: "bold",
-                }}
-              >
-                Get started
-              </Text>
-            </Pressable>
-          </TouchableOpacity>
+        <View style={{ marginTop: 800 }}>
+          <Tabs />
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -77,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default timeline;
