@@ -9,8 +9,8 @@ const Signup = ({ navigation }) => {
   const toast = useToast();
 
   const [user, setUser] = useState({
-    fistname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     username: "",
     password: "",
   });
