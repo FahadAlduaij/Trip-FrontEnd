@@ -4,7 +4,6 @@ import { Text, TextInput, View, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Pressable, useToast } from "native-base";
 import authStore from "../../stores/authStore";
-import Tabs from "../tabNavigator/Tabs";
 
 const Login = ({ navigation }) => {
   const toast = useToast();

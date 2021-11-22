@@ -1,8 +1,10 @@
+import "react-native-gesture-handler";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Image, TouchableOpacity, View, Text } from "react-native";
 import { Pressable } from "native-base";
 import Home from "../Home/index";
+import UserProfileMain from "../Profile/UserProfileMain";
 
 const Tab = createBottomTabNavigator();
 const CustomTabBarButton = ({ navigation }) => (
@@ -155,9 +157,10 @@ const Tabs = ({ navigation }) => {
           ),
         }}
       />
+
       <Tab.Screen
-        name="profile"
-        component={Home}
+        name="UserProfileMain"
+        component={UserProfileMain}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -167,6 +170,7 @@ const Tabs = ({ navigation }) => {
                 top: 10,
               }}
             >
+              {/* <Pressable onPress={() => navigation.navigate("UserProfileMain")}> */}
               <Image
                 source={require("../images/icons/profile.png")}
                 resizeMode="contain"
@@ -177,10 +181,14 @@ const Tabs = ({ navigation }) => {
                 }}
               />
               <Text
-                style={{ color: focused ? "#00d0ff" : "#748c94", fontSize: 12 }}
+                style={{
+                  color: focused ? "#00d0ff" : "#748c94",
+                  fontSize: 12,
+                }}
               >
                 Profile
               </Text>
+              {/* </Pressable> */}
             </View>
           ),
         }}
