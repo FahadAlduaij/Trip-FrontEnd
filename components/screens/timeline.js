@@ -11,13 +11,12 @@ import {
 } from "react-native";
 import { Center, Pressable } from "native-base";
 
-// components
+// Components
 import Tabs from "../tabNavigator/Tabs";
 import TripsList from "../Trips/TripsList";
-import TripItem from "../Trips/TripItem";
 import TripModal from "../Trips/TripModal";
 
-const timeline = ({ navigation, route }) => {
+const timeline = ({ navigation }) => {
 	const [showModal, setShowModal] = useState(false);
 
 	return (
@@ -36,6 +35,8 @@ const timeline = ({ navigation, route }) => {
 		</SafeAreaView>
 	);
 };
+
+export default timeline;
 
 const styles = StyleSheet.create({
 	image: {
@@ -72,5 +73,3 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 });
-
-export default timeline;
