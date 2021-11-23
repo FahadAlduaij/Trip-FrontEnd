@@ -2,17 +2,18 @@ import { observer } from "mobx-react";
 import React from "react";
 import { StyleSheet, SafeAreaView, ScrollView, StatusBar } from "react-native";
 import {
-  Box,
-  Heading,
-  AspectRatio,
-  Image,
-  Text,
-  Center,
-  HStack,
-  Stack,
-  NativeBaseProvider,
-  Pressable,
+	Box,
+	Heading,
+	AspectRatio,
+	Image,
+	Text,
+	Center,
+	HStack,
+	Stack,
+	NativeBaseProvider,
+	Pressable,
 } from "native-base";
+import { baseURL } from "../../stores/instance";
 
 const TripItem = ({ trip, navigation, route }) => {
   return (
@@ -47,7 +48,7 @@ const TripItem = ({ trip, navigation, route }) => {
             <AspectRatio w="100%" ratio={16 / 9}>
               <Image
                 source={{
-                  uri: trip.image,
+                  uri: baseURL + trip.image,
                 }}
                 alt="image"
               />
@@ -72,16 +73,17 @@ const TripItem = ({ trip, navigation, route }) => {
       </SafeAreaView>
     </Pressable>
   );
+
 };
 
 export default observer(TripItem);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight,
-  },
-  scrollView: {
-    marginHorizontal: 20,
-  },
+	container: {
+		flex: 1,
+		paddingTop: StatusBar.currentHeight,
+	},
+	scrollView: {
+		marginHorizontal: 20,
+	},
 });

@@ -1,62 +1,69 @@
 import { instance } from "./instance";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 
 class TripStore {
-  trips = [];
-  loading = true;
+	trips = [];
+	loading = true;
 
-  constructor() {
-    makeAutoObservable(this);
-  }
+	constructor() {
+		makeAutoObservable(this);
+	}
 
-  fetchTrips = async () => {
-    try {
-      const response = await instance.get("/trips");
-      this.trips = response.data;
-      this.loading = false;
-    } catch (error) {
-      console.error("tripStore --> fetchTrips", error);
-    }
-  };
+	fetchTrips = async () => {
+		try {
+			const response = await instance.get("/trips");
+			runInAction(() => {
+				this.trips = response.data;
+				this.loading = false;
+			});
+		} catch (error) {
+			console.error("tripStore --> fetchTrips", error);
+		}
+	};
 
-  addTrip = async (newTrip) => {
-    try {
-      const response = await instance.post("/trips", newTrip);
-      this.trips.push(response.data);
-    } catch (error) {
-      console.error("tripStore --> addTrip", error);
-    }
-  };
+	addTrip = async (newTrip) => {
+		try {
+			const formData = new FormData();
+			for (const key in newTrip) {
+				formData.append(key, newTrip[key]);
+			}
 
-  editTrip = async (updatedTrip) => {
-    try {
-      await instance.put(`/trips/${updatedTrip.id}`, updatedTrip);
+			const response = await instance.post("/trips", formData);
+			this.trips.push(response.data);
+		} catch (error) {
+			console.error("tripStore --> addTrip", error);
+		}
+	};
 
-      const trip = this.trips.find((trip) => trip.id === updatedTrip.id);
-      for (const key in trip) trip[key] = updatedTrip[key];
-    } catch (error) {
-      console.error("tripStore --> editTrip", error);
-    }
-  };
+	editTrip = async (updatedTrip) => {
+		try {
+			await instance.put(`/trips/${updatedTrip.id}`, updatedTrip);
 
-  deleteTrip = async (tripId) => {
-    try {
-      await instance.delete(`/trips/${tripId}`);
+			const trip = this.trips.find((trip) => trip.id === updatedTrip.id);
+			for (const key in trip) trip[key] = updatedTrip[key];
+		} catch (error) {
+			console.error("tripStore --> editTrip", error);
+		}
+	};
 
-      this.trips = this.trips.filter((trip) => trip.id !== +tripId);
-    } catch (error) {
-      console.log("TripStore -> deleteTrip -> error", error);
-    }
-  };
+	deleteTrip = async (tripId) => {
+		try {
+			await instance.delete(`/trips/${tripId}`);
 
-  findUser = async (userId) => {
-    try {
-      const response = await instance.get(`/users/${userId}`);
-      console.log("TripStore -> findUser -> response", response.data);
-    } catch (error) {
-      console.log("TripStore -> findUser -> error", error);
-    }
-  };
+			this.trips = this.trips.filter((trip) => trip.id !== +tripId);
+		} catch (error) {
+			console.log("TripStore -> deleteTrip -> error", error);
+		}
+	};
+
+	findUser = async (userId) => {
+		try {
+			const response = await instance.get(`/users/${userId}`);
+			console.log("TripStore -> findUser -> response", response.data);
+		} catch (error) {
+			console.log("TripStore -> findUser -> error", error);
+		}
+	};
 }
 
 const tripStore = new TripStore();
