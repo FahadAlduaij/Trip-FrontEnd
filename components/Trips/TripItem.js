@@ -22,6 +22,8 @@ const TripItem = ({ trip, navigation, route }) => {
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <Box
+            h="300"
+            marginBottom="5"
             maxW="80"
             rounded="lg"
             overflow="hidden"
@@ -80,5 +82,9 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginHorizontal: 20,
+  },
+  card: {
+    flex: 1,
+    height: "100%",
   },
 });

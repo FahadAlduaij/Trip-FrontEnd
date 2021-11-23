@@ -23,7 +23,7 @@ const timeline = ({ navigation, route }) => {
       >
         <TripsList navigation={navigation} />
 
-        <View style={{ marginTop: 800 }}>
+        <View style={{ marginTop: 40 }}>
           <Tabs />
         </View>
       </ImageBackground>
