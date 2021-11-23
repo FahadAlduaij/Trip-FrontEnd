@@ -29,14 +29,12 @@ const timeline = ({ navigation, route }) => {
 				<TripsList navigation={navigation} />
 				<TripModal showModal={showModal} setShowModal={setShowModal} />
 
-
-        <View style={{ marginTop: 40 }}>
-          <Tabs />
-        </View>
-      </ImageBackground>
-    </SafeAreaView>
-  );
-
+				<View style={{ marginTop: 40 }}>
+					<Tabs setShowModal={setShowModal} />
+				</View>
+			</ImageBackground>
+		</SafeAreaView>
+	);
 };
 
 const styles = StyleSheet.create({
