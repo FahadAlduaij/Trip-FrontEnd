@@ -1,4 +1,5 @@
 import { observer } from "mobx-react";
+import { ScrollView } from "native-base";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -9,7 +10,7 @@ const TripsList = ({ navigation, route }) => {
   const tripList = tripStore.trips.map((trip) => (
     <TripItem trip={trip} key={trip._id} navigation={navigation} />
   ));
-  return <View>{tripList}</View>;
+  return <ScrollView horizontal={true}>{tripList}</ScrollView>;
 };
 
 export default observer(TripsList);
