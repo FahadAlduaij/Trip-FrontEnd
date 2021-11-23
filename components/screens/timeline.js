@@ -9,8 +9,10 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
-import { Pressable } from "native-base";
+import { Center, Pressable } from "native-base";
 import Tabs from "../tabNavigator/Tabs";
+import TripsList from "../Trips/TripsList";
+import TripItem from "../Trips/TripItem";
 
 const timeline = ({ navigation }) => {
   return (
@@ -19,6 +21,8 @@ const timeline = ({ navigation }) => {
         source={require("../../components/images/background.jpg")}
         style={styles.image}
       >
+        <TripsList />
+
         <View style={{ marginTop: 800 }}>
           <Tabs />
         </View>
