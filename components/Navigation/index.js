@@ -13,19 +13,19 @@ import { observer } from "mobx-react";
 import TripDetail from "../Trips/TripDetail";
 
 const RootNavigator = () => {
-	const { Navigator, Screen } = createStackNavigator();
+  const { Navigator, Screen } = createStackNavigator();
 
-	return (
-		<Navigator initialRouteName={"timeline"}>
-			<Screen name="Home" component={Home} options={{}} />
-			<Screen name="Signin" component={Signin} />
-			<Screen name="Signup" component={Signup} />
-			<Screen name="timeline" component={timeline} />
-			<Screen name="UserProfileMain" component={UserProfileMain} />
-			<Screen name="Search" component={Search} />
-			<Screen name="TripDetail" component={TripDetail} />
-		</Navigator>
-	);
+  return (
+    <Navigator initialRouteName={"timeline"}>
+      <Screen name="Home" component={Home} options={{}} />
+      <Screen name="Signin" component={Signin} />
+      <Screen name="Signup" component={Signup} />
+      <Screen name="timeline" component={timeline} />
+      <Screen name="UserProfileMain" component={UserProfileMain} />
+      <Screen name="Search" component={Search} />
+      <Screen name="TripDetail" component={TripDetail} />
+    </Navigator>
+  );
 };
 
 export default observer(RootNavigator);
