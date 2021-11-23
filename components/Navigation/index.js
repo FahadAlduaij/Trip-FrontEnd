@@ -10,6 +10,7 @@ import Search from "../screens/Search";
 //stores
 import authStore from "../../stores/authStore";
 import { observer } from "mobx-react";
+import TripDetail from "../Trips/TripDetail";
 
 const RootNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
@@ -22,6 +23,7 @@ const RootNavigator = () => {
       <Screen name="timeline" component={timeline} />
       <Screen name="UserProfileMain" component={UserProfileMain} />
       <Screen name="Search" component={Search} />
+      <Screen name="TripDetail" component={TripDetail} />
     </Navigator>
   );
 };

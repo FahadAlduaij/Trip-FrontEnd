@@ -14,14 +14,14 @@ import Tabs from "../tabNavigator/Tabs";
 import TripsList from "../Trips/TripsList";
 import TripItem from "../Trips/TripItem";
 
-const timeline = ({ navigation }) => {
+const timeline = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.body}>
       <ImageBackground
         source={require("../../components/images/background.jpg")}
         style={styles.image}
       >
-        <TripsList />
+        <TripsList navigation={navigation} />
 
         <View style={{ marginTop: 800 }}>
           <Tabs />

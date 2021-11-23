@@ -5,9 +5,9 @@ import { StyleSheet, Text, View } from "react-native";
 import tripStore from "../../stores/tripStore";
 import TripItem from "./TripItem";
 
-const TripsList = () => {
+const TripsList = ({ navigation, route }) => {
   const tripList = tripStore.trips.map((trip) => (
-    <TripItem trip={trip} key={trip._id} />
+    <TripItem trip={trip} key={trip._id} navigation={navigation} />
   ));
   return <View>{tripList}</View>;
 };
