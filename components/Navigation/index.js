@@ -13,44 +13,44 @@ import TripDetail from "../Trips/TripDetail";
 import authStore from "../../stores/authStore";
 
 const RootNavigator = () => {
-	const { Navigator, Screen } = createStackNavigator();
+  const { Navigator, Screen } = createStackNavigator();
 
-	return (
-		<Navigator initialRouteName={"Tabs"}>
-			{/* Screen for Logged in Users */}
-			<Screen
-				name="Tabs"
-				component={Tabs}
-				options={{
-					headerShown: false,
-				}}
-			/>
-			<Screen
-				name="TripDetail"
-				component={TripDetail}
-				options={{
-					headerShown: false,
-				}}
-			/>
+  return (
+    <Navigator initialRouteName={"Home"}>
+      {/* Screen for Logged in Users */}
+      <Screen
+        name="Tabs"
+        component={Tabs}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="TripDetail"
+        component={TripDetail}
+        options={{
+          headerShown: false,
+        }}
+      />
 
-			{/* Auth Screen */}
-			<Screen name="Home" component={Home} options={{}} />
-			<Screen
-				name="Signin"
-				component={Signin}
-				options={{
-					headerShown: false,
-				}}
-			/>
-			<Screen
-				name="Signup"
-				component={Signup}
-				options={{
-					headerShown: false,
-				}}
-			/>
-		</Navigator>
-	);
+      {/* Auth Screen */}
+      <Screen name="Home" component={Home} options={{}} />
+      <Screen
+        name="Signin"
+        component={Signin}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="Signup"
+        component={Signup}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Navigator>
+  );
 };
 
 export default observer(RootNavigator);
