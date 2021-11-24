@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import {
-	Button,
-	Modal,
-	FormControl,
-	Input,
-	Center,
-	NativeBaseProvider,
-	Box,
-	Text,
-	Icon,
-} from "native-base";
+import { Button, Modal, FormControl, Input, Box, Icon } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
 // stores
 import tripStore from "../../stores/tripStore";
 import { observer } from "mobx-react";
 
-const TripModal = ({ showModal, setShowModal }) => {
+const TripModal = () => {
 	const [trip, setTrip] = useState({
 		title: "",
 		description: "",

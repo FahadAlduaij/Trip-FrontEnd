@@ -11,6 +11,10 @@ import UserProfileMain from "../screens/UserProfileMain";
 import Search from "../screens/Search";
 import timeline from "../screens/timeline";
 import TripModal from "../Trips/TripModal";
+import ProfileIcon from "./icons/ProfileIcon";
+import ChatIcon from "./icons/ChatIcon";
+import SearchIcon from "./icons/SearchIcon";
+import TimeLineIcon from "./icons/TimeLineIcon";
 
 // Stores
 import tripStore from "../../stores/tripStore";
@@ -43,7 +47,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 					position: "absolute",
 					elevation: 0,
 					backgroundColor: "#d4d4d4",
-					height: 70,
+					height: 80,
 					...styles.shadow,
 				},
 			}}
@@ -53,32 +57,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 				component={timeline}
 				options={{
 					tabBarIcon: ({ focused }) => (
-						<Pressable onPress={() => navigation.navigate("timeline")}>
-							<View
-								style={{
-									alignItems: "center",
-									justifyContent: "center",
-								}}
-							>
-								<Image
-									source={require("../images/icons/Timelinee.png")}
-									resizeMode="contain"
-									style={{
-										width: 30,
-										height: 30,
-										tintColor: focused ? "#0891b2" : "#748c94",
-									}}
-								/>
-								{/* <Text
-									style={{
-										color: focused ? "#0891b2" : "#748c94",
-										fontSize: 12,
-									}}
-								>
-									Timeline
-								</Text> */}
-							</View>
-						</Pressable>
+						<TimeLineIcon navigation={navigation} focused={focused} />
 					),
 				}}
 			/>
@@ -88,32 +67,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 				component={Search}
 				options={{
 					tabBarIcon: ({ focused }) => (
-						<View
-							style={{
-								alignItems: "center",
-								justifyContent: "center",
-							}}
-						>
-							<Pressable onPress={() => navigation.navigate("Search")}>
-								<Image
-									source={require("../images/icons/Explor.png")}
-									resizeMode="contain"
-									style={{
-										width: 30,
-										height: 30,
-										tintColor: focused ? "#0891b2" : "#748c94",
-									}}
-								/>
-								{/* <Text
-									style={{
-										color: focused ? "#0891b2" : "#748c94",
-										fontSize: 12,
-									}}
-								>
-									Explore
-								</Text> */}
-							</Pressable>
-						</View>
+						<SearchIcon navigation={navigation} focused={focused} />
 					),
 				}}
 			/>
@@ -128,7 +82,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 									width: 60,
 									height: 60,
 									borderRadius: 35,
-									marginTop: 5,
+									marginTop: 10,
 									backgroundColor: "#0891b2",
 									alignItems: "center",
 									justifyContent: "center",
@@ -153,27 +107,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 				component={Home}
 				options={{
 					tabBarIcon: ({ focused }) => (
-						<View
-							style={{
-								alignItems: "center",
-								justifyContent: "center",
-							}}
-						>
-							<Image
-								source={require("../images/icons/Chat.png")}
-								resizeMode="contain"
-								style={{
-									width: 30,
-									height: 30,
-									tintColor: focused ? "#0891b2" : "#748c94",
-								}}
-							/>
-							{/* <Text
-								style={{ color: focused ? "#0891b2" : "#748c94", fontSize: 12 }}
-							>
-								Chattttt
-							</Text> */}
-						</View>
+						<ChatIcon navigation={navigation} focused={focused} />
 					),
 				}}
 			/>
@@ -183,33 +117,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 				component={UserProfileMain}
 				options={{
 					tabBarIcon: ({ focused }) => (
-						<View
-							style={{
-								alignItems: "center",
-								justifyContent: "center",
-							}}
-						>
-							<Pressable onPress={() => navigation.navigate("UserProfileMain")}>
-								<Image
-									source={require("../images/icons/profile.png")}
-									resizeMode="contain"
-									style={{
-										width: 30,
-										height: 30,
-										tintColor: focused ? "#0891b2" : "#748c94",
-										marginLeft: 3,
-									}}
-								/>
-								{/* <Text
-									style={{
-										color: focused ? "#0891b2" : "#748c94",
-										fontSize: 12,
-									}}
-								>
-									Profile
-								</Text> */}
-							</Pressable>
-						</View>
+						<ProfileIcon navigation={navigation} focused={focused} />
 					),
 				}}
 			/>
