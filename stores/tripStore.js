@@ -58,28 +58,54 @@ class TripStore {
 		} catch (error) {
 			console.error("tripStore --> addTrip", error);
 			toast.show({
-				title: "Error",
+				title: "Try Again",
 				status: "error",
-				description: "Try Again",
+				description:
+					"Please try again to create new trip and make sure you are signed in.",
 				placement: "top",
 			});
 		}
 	};
 
-	editTrip = async (trip, updatedTrip, toast) => {
+	editTrip = async (tripId, user, updatedTrip, toast) => {
 		try {
+			// Because title is required in Schema but no need to rewrite it when updating
+
+			if (!updatedTrip.title) {
+				updatedTrip.title = tripId.title;
+			}
+
+			if (!updatedTrip.description) {
+				updatedTrip.description = tripId.description;
+			}
+
+			if (!updatedTrip.image) {
+				updatedTrip.image = tripId.image;
+			}
+
 			const formData = new FormData();
 			for (const key in updatedTrip) {
 				formData.append(key, updatedTrip[key]);
 			}
 
-			const res = await instance.put(`/trips/${trip._id}`, formData);
+			const res = await instance.put(`/trips/${tripId._id}`, formData);
 
-			const trip = this.trips.find((_trip) => _trip._id === updatedTrip._id);
-			// for (const key in trip) trip[key] = updatedTrip[key];
+			const trip = this.trips.find((_trip) => _trip._id === tripId._id);
 			trip = res.data;
+
+			toast.show({
+				title: "Trip Updated",
+				status: "success",
+				placement: "top",
+			});
 		} catch (error) {
 			console.error("tripStore --> editTrip", error);
+			toast.show({
+				title: "Unauthorized",
+				status: "error",
+				description: "You are not the owner of this trip.",
+				placement: "top",
+			});
 		}
 	};
 
@@ -101,7 +127,7 @@ class TripStore {
 			toast.show({
 				title: "Unauthorized",
 				status: "error",
-				description: "You are not the owner",
+				description: "You are not the owner of this trip.",
 				placement: "top",
 			});
 		}
