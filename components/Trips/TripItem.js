@@ -17,34 +17,38 @@ const TripItem = ({ trip, navigation }) => {
 
   return (
     <View>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 10,
-          paddingLeft: 15,
-          borderTopColor: "black",
-          borderTopWidth: 0.5,
-          backgroundColor: "transparent",
-          marginTop: 20,
-        }}
+      <Pressable
+        onPress={() => navigation.navigate("ProfilePage", { trip: trip })}
       >
-        <TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            padding: 10,
+            paddingLeft: 15,
+            borderTopColor: "black",
+            borderTopWidth: 0.5,
+            backgroundColor: "transparent",
+            marginTop: 20,
+          }}
+        >
           <Avatar size="medium" rounded source={{ uri: user.profile.image }} />
-        </TouchableOpacity>
-        <View style={{ marginLeft: 10, marginBottom: 5 }}>
-          <Text style={{ fontSize: 16, fontWeight: "bold", color: "white" }}>
-            {user.name}
-          </Text>
-          <Text
-            style={{ fontSize: 14, fontWeight: "normal", color: "#e7e7e7" }}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-          >
-            {trip.title}
-          </Text>
+
+          <View style={{ marginLeft: 10, marginBottom: 5 }}>
+            <Text style={{ fontSize: 16, fontWeight: "bold", color: "white" }}>
+              {user.name}
+            </Text>
+
+            <Text
+              style={{ fontSize: 14, fontWeight: "normal", color: "#e7e7e7" }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {trip.title}
+            </Text>
+          </View>
         </View>
-      </View>
+      </Pressable>
       <View>
         <Pressable
           onPress={() => navigation.navigate("TripDetail", { trip: trip })}
