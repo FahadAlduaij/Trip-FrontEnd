@@ -88,7 +88,7 @@ const TripModal = ({ showModal, setShowModal }) => {
 							<Button
 								onPress={_pickImage}
 								variant="outline"
-								colorScheme="primary"
+								colorScheme="coolGray"
 								leftIcon={
 									<Icon as={Ionicons} name="cloud-upload-outline" size="sm" />
 								}
@@ -119,7 +119,9 @@ const TripModal = ({ showModal, setShowModal }) => {
 							>
 								Cancel
 							</Button>
-							<Button onPress={handleSubmit}>Create</Button>
+							<Button style={styles.btnCreate} onPress={handleSubmit}>
+								Create
+							</Button>
 						</Button.Group>
 					</Modal.Footer>
 				</Modal.Content>
@@ -130,4 +132,8 @@ const TripModal = ({ showModal, setShowModal }) => {
 
 export default observer(TripModal);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	btnCreate: {
+		backgroundColor: "#0891b2",
+	},
+});

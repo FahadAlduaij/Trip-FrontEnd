@@ -25,7 +25,13 @@ const RootNavigator = () => {
 					headerShown: false,
 				}}
 			/>
-			<Screen name="TripDetail" component={TripDetail} />
+			<Screen
+				name="TripDetail"
+				component={TripDetail}
+				options={{
+					headerShown: false,
+				}}
+			/>
 
 			{/* Auth Screen */}
 			<Screen name="Home" component={Home} options={{}} />

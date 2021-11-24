@@ -5,7 +5,14 @@ import Tabs from "../tabNavigator/Tabs";
 
 export default function Search() {
 	return (
-		<View style={{ backgroundColor: "#0f1010", height: "100%", width: "100%" }}>
+		<View
+			style={{
+				backgroundColor: "#0f1010",
+				height: "100%",
+				width: "100%",
+				paddingTop: 40,
+			}}
+		>
 			<View
 				style={{
 					padding: 10,

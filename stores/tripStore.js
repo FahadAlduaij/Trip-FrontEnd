@@ -66,7 +66,7 @@ class TripStore {
 		try {
 			await instance.delete(`/trips/${tripId}`);
 
-			this.trips = this.trips.filter((trip) => trip.id !== +tripId);
+			this.trips = this.trips.filter((trip) => trip._id !== tripId);
 		} catch (error) {
 			console.log("TripStore -> deleteTrip -> error", error);
 		}
