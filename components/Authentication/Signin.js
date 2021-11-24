@@ -14,7 +14,7 @@ const Signin = ({ navigation }) => {
 	});
 
 	const handleSubmit = () => {
-		authStore.Signin(user, navigation, toast);
+		authStore.signin(user, navigation, toast);
 	};
 
 	return (

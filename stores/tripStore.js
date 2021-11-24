@@ -53,10 +53,11 @@ class TripStore {
 
 	editTrip = async (updatedTrip) => {
 		try {
-			await instance.put(`/trips/${updatedTrip.id}`, updatedTrip);
+			const res = await instance.put(`/trips/${updatedTrip._id}`, updatedTrip);
 
-			const trip = this.trips.find((trip) => trip.id === updatedTrip.id);
-			for (const key in trip) trip[key] = updatedTrip[key];
+			const trip = this.trips.find((trip) => trip._id === updatedTrip._id);
+			// for (const key in trip) trip[key] = updatedTrip[key];
+			trip = res.data;
 		} catch (error) {
 			console.error("tripStore --> editTrip", error);
 		}
@@ -69,15 +70,6 @@ class TripStore {
 			this.trips = this.trips.filter((trip) => trip._id !== tripId);
 		} catch (error) {
 			console.log("TripStore -> deleteTrip -> error", error);
-		}
-	};
-
-	findUser = async (userId) => {
-		try {
-			const response = await instance.get(`/users/${userId}`);
-			console.log("TripStore -> findUser -> response", response.data);
-		} catch (error) {
-			console.log("TripStore -> findUser -> error", error);
 		}
 	};
 }

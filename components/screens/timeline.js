@@ -1,24 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "react-native-gesture-handler";
-import {
-	Text,
-	View,
-	SafeAreaView,
-	StyleSheet,
-	TouchableOpacity,
-	Image,
-	ImageBackground,
-} from "react-native";
-import { Center, Pressable } from "native-base";
+import { View, SafeAreaView, StyleSheet, ImageBackground } from "react-native";
 
 // Components
-import Tabs from "../tabNavigator/Tabs";
 import TripsList from "../Trips/TripsList";
 import TripModal from "../Trips/TripModal";
 
 const timeline = ({ navigation }) => {
-	const [showModal, setShowModal] = useState(false);
-
 	return (
 		<SafeAreaView style={styles.body}>
 			<ImageBackground
@@ -26,11 +14,7 @@ const timeline = ({ navigation }) => {
 				style={styles.image}
 			>
 				<TripsList navigation={navigation} />
-				<TripModal showModal={showModal} setShowModal={setShowModal} />
-
-				<View style={{ marginTop: 40 }}>
-					{/* <Tabs setShowModal={setShowModal} navigation={navigation} /> */}
-				</View>
+				<TripModal />
 			</ImageBackground>
 		</SafeAreaView>
 	);

@@ -38,7 +38,7 @@ class AuthStore {
 		}
 	};
 
-	Signin = async (user, navigation, toast) => {
+	signin = async (user, navigation, toast) => {
 		try {
 			const res = await instance.post("/signin", user);
 			this.setUser(res.data.token);
