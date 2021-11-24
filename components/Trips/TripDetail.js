@@ -1,12 +1,28 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Text, View, Image, ScrollView } from "native-base";
-import { baseURL } from "../../stores/instance";
+import {
+	Text,
+	View,
+	Image,
+	ScrollView,
+	HStack,
+	Center,
+	useToast,
+} from "native-base";
 import { Button } from "react-native-elements";
-import Tabs from "../tabNavigator/Tabs";
+
+// Stores
+import { baseURL } from "../../stores/instance";
+import tripStore from "../../stores/tripStore";
+import EditTripModal from "./EditTripModal";
 
 const TripDetail = ({ route, navigation }) => {
 	const trip = route.params.trip;
+	const toast = useToast();
+
+	const handleDelete = () => {
+		tripStore.deleteTrip(trip, toast, navigation);
+	};
 
 	return (
 		<View style={styles.container}>
@@ -15,6 +31,7 @@ const TripDetail = ({ route, navigation }) => {
 					<Image
 						style={styles.tripImg}
 						source={{ uri: baseURL + trip.image }}
+						alt="trip image description"
 					/>
 					<Text style={styles.name}>{trip.title}</Text>
 
@@ -26,30 +43,35 @@ const TripDetail = ({ route, navigation }) => {
 						source={{
 							uri: "https://img.icons8.com/color/40/000000/star.png",
 						}}
+						alt="Start 1"
 					/>
 					<Image
 						style={styles.star}
 						source={{
 							uri: "https://img.icons8.com/color/40/000000/star.png",
 						}}
+						alt="Start 2"
 					/>
 					<Image
 						style={styles.star}
 						source={{
 							uri: "https://img.icons8.com/color/40/000000/star.png",
 						}}
+						alt="Start 3"
 					/>
 					<Image
 						style={styles.star}
 						source={{
 							uri: "https://img.icons8.com/color/40/000000/star.png",
 						}}
+						alt="Start 4"
 					/>
 					<Image
 						style={styles.star}
 						source={{
 							uri: "https://img.icons8.com/color/40/000000/star.png",
 						}}
+						alt="Start 5"
 					/>
 				</View>
 				<View style={styles.addToListContainer}>
@@ -62,9 +84,21 @@ const TripDetail = ({ route, navigation }) => {
 						containerStyle={{ width: "82%", marginTop: 10 }}
 					/>
 				</View>
-				<View style={{ marginTop: 333 }}>
-					<Tabs />
-				</View>
+				<Center>
+					<HStack mt="5">
+						<EditTripModal trip={trip} />
+
+						<Button
+							title="Delete"
+							buttonStyle={{
+								backgroundColor: "#dc2626",
+								margin: 5,
+								width: 100,
+							}}
+							onPress={handleDelete}
+						/>
+					</HStack>
+				</Center>
 			</ScrollView>
 		</View>
 	);
