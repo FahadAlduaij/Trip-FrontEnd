@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
 import { Button, Modal, FormControl, Input, Icon } from "native-base";
-
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
-import authStore from "../../stores/authStore";
 import { observer } from "mobx-react";
+
+// Stores
+import authStore from "../../stores/authStore";
 
 const EditProfileModal = () => {
 	const [update, setUpdate] = useState(authStore.user);
@@ -92,5 +92,3 @@ const EditProfileModal = () => {
 };
 
 export default observer(EditProfileModal);
-
-const styles = StyleSheet.create({});

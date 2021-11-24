@@ -10,6 +10,7 @@ import {
 	useToast,
 } from "native-base";
 import { Button } from "react-native-elements";
+import { observer } from "mobx-react";
 
 // Stores
 import { baseURL } from "../../stores/instance";
@@ -104,7 +105,7 @@ const TripDetail = ({ route, navigation }) => {
 	);
 };
 
-export default TripDetail;
+export default observer(TripDetail);
 
 const styles = StyleSheet.create({
 	container: {

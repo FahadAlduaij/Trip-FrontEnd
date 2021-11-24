@@ -16,7 +16,6 @@ import { baseURL } from "../../stores/instance";
 
 function UserProfileMain({ navigation }) {
 	const user = authStore.user;
-	console.log(user.image);
 
 	const trips = tripStore.trips
 		.filter((trip) => trip.owner._id === user._id)

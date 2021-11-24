@@ -84,6 +84,16 @@ const TripModal = () => {
 						</FormControl>
 
 						<FormControl mt="3">
+							<FormControl.Label>Description</FormControl.Label>
+							<Input
+								placeholder="Enter description"
+								onChangeText={(description) =>
+									setTrip({ ...trip, description })
+								}
+							/>
+						</FormControl>
+
+						<FormControl mt="3">
 							<FormControl.Label>Image</FormControl.Label>
 							<Button
 								onPress={_pickImage}
@@ -97,16 +107,6 @@ const TripModal = () => {
 							</Button>
 
 							{/* <Input placeholder="Choose Image" /> */}
-						</FormControl>
-
-						<FormControl mt="3">
-							<FormControl.Label>Description</FormControl.Label>
-							<Input
-								placeholder="Enter description"
-								onChangeText={(description) =>
-									setTrip({ ...trip, description })
-								}
-							/>
 						</FormControl>
 					</Modal.Body>
 

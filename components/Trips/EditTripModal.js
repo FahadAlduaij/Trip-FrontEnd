@@ -6,15 +6,16 @@ import { Ionicons } from "@expo/vector-icons";
 
 // Stores
 import tripStore from "../../stores/tripStore";
+import authStore from "../../stores/authStore";
 
 const EditTripModal = ({ trip }) => {
+	const [showModal, setShowModal] = useState(false);
 	const [updatedTrip, setUpdatedTrip] = useState({
 		title: "",
 		description: "",
 		image: "",
 	});
 
-	const [showModal, setShowModal] = useState(false);
 	const toast = useToast();
 
 	const _pickImage = async () => {
@@ -44,13 +45,17 @@ const EditTripModal = ({ trip }) => {
 	};
 
 	const handleSubmit = () => {
-		tripStore.editTrip(trip, updatedTrip, toast);
-		// tripStore.closeModal();
+		tripStore.editTrip(trip, authStore.user, updatedTrip, toast);
+		setShowModal(false);
 	};
 
 	return (
 		<>
-			<Button style={styles.btnEditTrip} onPress={() => setShowModal(true)}>
+			<Button
+				variant="solid"
+				style={styles.btnEditTrip}
+				onPress={() => setShowModal(true)}
+			>
 				Edit Trip
 			</Button>
 
