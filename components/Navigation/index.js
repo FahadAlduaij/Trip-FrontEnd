@@ -17,7 +17,11 @@ const RootNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
 
   return (
+
+    
+
     <Navigator initialRouteName={"Tabs"}>
+
       {/* Screen for Logged in Users */}
       <Screen
         name="Tabs"
@@ -33,6 +37,7 @@ const RootNavigator = () => {
           headerShown: false,
         }}
       />
+
       <Screen
         name="ProfilePage"
         component={ProfilePage}
@@ -40,6 +45,7 @@ const RootNavigator = () => {
           headerShown: false,
         }}
       />
+
       {/* Auth Screen */}
       <Screen name="Home" component={Home} options={{}} />
       <Screen
