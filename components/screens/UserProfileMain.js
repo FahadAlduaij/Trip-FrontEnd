@@ -200,9 +200,6 @@ export default function UserProfileMain(props) {
 					containerStyle={{ width: "11%", marginTop: 10 }}
 				/>
 			</View>
-			<View style={{ marginTop: 380 }}>
-				<Tabs />
-			</View>
 		</ScrollView>
 	);
 }

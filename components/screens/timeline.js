@@ -29,7 +29,7 @@ const timeline = ({ navigation }) => {
 				<TripModal showModal={showModal} setShowModal={setShowModal} />
 
 				<View style={{ marginTop: 40 }}>
-					<Tabs setShowModal={setShowModal} />
+					{/* <Tabs setShowModal={setShowModal} navigation={navigation} /> */}
 				</View>
 			</ImageBackground>
 		</SafeAreaView>

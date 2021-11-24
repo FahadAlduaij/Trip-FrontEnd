@@ -6,30 +6,43 @@ import { observer } from "mobx-react";
 import Home from "../Home";
 import Signin from "../Authentication/Signin";
 import Signup from "../Authentication/Signup";
-import timeline from "../screens/timeline";
-import UserProfileMain from "../Profile/UserProfileMain";
-import Search from "../screens/Search";
 import Tabs from "../tabNavigator/Tabs";
+import TripDetail from "../Trips/TripDetail";
 
 //stores
 import authStore from "../../stores/authStore";
-import TripDetail from "../Trips/TripDetail";
 
 const RootNavigator = () => {
 	const { Navigator, Screen } = createStackNavigator();
 
 	return (
-		<Navigator initialRouteName={"timeline"}>
+		<Navigator initialRouteName={"Tabs"}>
 			{/* Screen for Logged in Users */}
-			<Screen name="timeline" component={timeline} />
-			<Screen name="UserProfileMain" component={UserProfileMain} />
-			<Screen name="Search" component={Search} />
+			<Screen
+				name="Tabs"
+				component={Tabs}
+				options={{
+					headerShown: false,
+				}}
+			/>
 			<Screen name="TripDetail" component={TripDetail} />
 
 			{/* Auth Screen */}
 			<Screen name="Home" component={Home} options={{}} />
-			<Screen name="Signin" component={Signin} />
-			<Screen name="Signup" component={Signup} />
+			<Screen
+				name="Signin"
+				component={Signin}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Screen
+				name="Signup"
+				component={Signup}
+				options={{
+					headerShown: false,
+				}}
+			/>
 		</Navigator>
 	);
 };

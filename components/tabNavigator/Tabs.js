@@ -7,8 +7,13 @@ import { useNavigation } from "@react-navigation/core";
 
 // Components
 import Home from "../Home/index";
-import UserProfileMain from "../Profile/UserProfileMain";
+import UserProfileMain from "../screens/UserProfileMain";
 import Search from "../screens/Search";
+import timeline from "../screens/timeline";
+import TripModal from "../Trips/TripModal";
+
+// Stores
+import tripStore from "../../stores/tripStore";
 
 const Tab = createBottomTabNavigator();
 // const CustomTabBarButton = () => {
@@ -24,29 +29,28 @@ const Tab = createBottomTabNavigator();
 // 	);
 // };
 
-const Tabs = ({ setShowModal }) => {
-	const navigation = useNavigation();
+const Tabs = ({ setShowModal, navigation }) => {
 	return (
 		<Tab.Navigator
+			initialRouteName={"timeline"}
 			screenOptions={{
 				tabBarShowLabel: false,
 				headerShown: false,
 				tabBarStyle: {
+					display: "flex",
+					justifyContent: "space-evenly",
+					alignItems: "center",
 					position: "absolute",
-					bottom: 25,
-					left: 20,
-					right: 20,
 					elevation: 0,
 					backgroundColor: "#d4d4d4",
-					borderRadius: 15,
-					height: 90,
+					height: 70,
 					...styles.shadow,
 				},
 			}}
 		>
 			<Tab.Screen
-				name="Home"
-				component={Home}
+				name="timeline"
+				component={timeline}
 				options={{
 					tabBarIcon: ({ focused }) => (
 						<Pressable onPress={() => navigation.navigate("timeline")}>
@@ -54,7 +58,6 @@ const Tabs = ({ setShowModal }) => {
 								style={{
 									alignItems: "center",
 									justifyContent: "center",
-									top: 10,
 								}}
 							>
 								<Image
@@ -63,25 +66,25 @@ const Tabs = ({ setShowModal }) => {
 									style={{
 										width: 30,
 										height: 30,
-										tintColor: focused ? "#00d0ff" : "#748c94",
-										marginLeft: 8,
+										tintColor: focused ? "#0891b2" : "#748c94",
 									}}
 								/>
-								<Text
+								{/* <Text
 									style={{
-										color: focused ? "#00d0ff" : "#748c94",
+										color: focused ? "#0891b2" : "#748c94",
 										fontSize: 12,
 									}}
 								>
 									Timeline
-								</Text>
+								</Text> */}
 							</View>
 						</Pressable>
 					),
 				}}
 			/>
+
 			<Tab.Screen
-				name="Explore"
+				name="Search"
 				component={Search}
 				options={{
 					tabBarIcon: ({ focused }) => (
@@ -89,7 +92,6 @@ const Tabs = ({ setShowModal }) => {
 							style={{
 								alignItems: "center",
 								justifyContent: "center",
-								top: 10,
 							}}
 						>
 							<Pressable onPress={() => navigation.navigate("Search")}>
@@ -99,35 +101,35 @@ const Tabs = ({ setShowModal }) => {
 									style={{
 										width: 30,
 										height: 30,
-										tintColor: focused ? "#00d0ff" : "#748c94",
+										tintColor: focused ? "#0891b2" : "#748c94",
 									}}
 								/>
-								<Text
+								{/* <Text
 									style={{
-										color: focused ? "#00d0ff" : "#748c94",
+										color: focused ? "#0891b2" : "#748c94",
 										fontSize: 12,
 									}}
 								>
 									Explore
-								</Text>
+								</Text> */}
 							</Pressable>
 						</View>
 					),
 				}}
 			/>
 			<Tab.Screen
-				name="Post"
-				component={Home}
+				name="Modal"
+				component={TripModal}
 				options={{
 					tabBarButton: (props) => (
-						<Pressable onPress={() => setShowModal(true)}>
+						<Pressable onPress={() => tripStore.openModal()}>
 							<View
 								style={{
-									width: 70,
-									height: 70,
+									width: 60,
+									height: 60,
 									borderRadius: 35,
-									marginTop: 10,
-									backgroundColor: "#2f8ce3",
+									marginTop: 5,
+									backgroundColor: "#0891b2",
 									alignItems: "center",
 									justifyContent: "center",
 								}}
@@ -155,7 +157,6 @@ const Tabs = ({ setShowModal }) => {
 							style={{
 								alignItems: "center",
 								justifyContent: "center",
-								top: 10,
 							}}
 						>
 							<Image
@@ -164,21 +165,21 @@ const Tabs = ({ setShowModal }) => {
 								style={{
 									width: 30,
 									height: 30,
-									tintColor: focused ? "#00d0ff" : "#748c94",
+									tintColor: focused ? "#0891b2" : "#748c94",
 								}}
 							/>
-							<Text
-								style={{ color: focused ? "#00d0ff" : "#748c94", fontSize: 12 }}
+							{/* <Text
+								style={{ color: focused ? "#0891b2" : "#748c94", fontSize: 12 }}
 							>
-								Chat
-							</Text>
+								Chattttt
+							</Text> */}
 						</View>
 					),
 				}}
 			/>
 
 			<Tab.Screen
-				name="Profile"
+				name="UserProfileMain"
 				component={UserProfileMain}
 				options={{
 					tabBarIcon: ({ focused }) => (
@@ -186,28 +187,27 @@ const Tabs = ({ setShowModal }) => {
 							style={{
 								alignItems: "center",
 								justifyContent: "center",
-								top: 10,
 							}}
 						>
-							<Pressable onPress={() => navigation.navigate("timeline")}>
+							<Pressable onPress={() => navigation.navigate("UserProfileMain")}>
 								<Image
 									source={require("../images/icons/profile.png")}
 									resizeMode="contain"
 									style={{
 										width: 30,
 										height: 30,
-										tintColor: focused ? "#00d0ff" : "#748c94",
+										tintColor: focused ? "#0891b2" : "#748c94",
 										marginLeft: 3,
 									}}
 								/>
-								<Text
+								{/* <Text
 									style={{
-										color: focused ? "#00d0ff" : "#748c94",
+										color: focused ? "#0891b2" : "#748c94",
 										fontSize: 12,
 									}}
 								>
 									Profile
-								</Text>
+								</Text> */}
 							</Pressable>
 						</View>
 					),

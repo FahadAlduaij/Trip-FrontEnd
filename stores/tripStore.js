@@ -4,10 +4,24 @@ import { makeAutoObservable, runInAction } from "mobx";
 class TripStore {
 	trips = [];
 	loading = true;
+	// to open modal from tab.navigation
+	showModal = false;
 
 	constructor() {
 		makeAutoObservable(this);
 	}
+
+	openModal = () => {
+		runInAction(() => {
+			this.showModal = true;
+		});
+	};
+
+	closeModal = () => {
+		runInAction(() => {
+			this.showModal = false;
+		});
+	};
 
 	fetchTrips = async () => {
 		try {

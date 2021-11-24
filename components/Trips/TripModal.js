@@ -10,11 +10,13 @@ import {
 	NativeBaseProvider,
 	Box,
 	Text,
+	Icon,
 } from "native-base";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
 
 // stores
 import tripStore from "../../stores/tripStore";
+import { observer } from "mobx-react";
 
 const TripModal = ({ showModal, setShowModal }) => {
 	const [trip, setTrip] = useState({
@@ -62,13 +64,12 @@ const TripModal = ({ showModal, setShowModal }) => {
 	};
 
 	const handleSubmit = () => {
-		console.log(trip);
 		tripStore.addTrip(trip);
 	};
 
 	return (
 		<Box>
-			<Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+			<Modal isOpen={tripStore.showModal} onClose={tripStore.closeModal}>
 				<Modal.Content maxWidth="400px">
 					<Modal.CloseButton />
 					<Modal.Header>New Trip</Modal.Header>
@@ -84,8 +85,15 @@ const TripModal = ({ showModal, setShowModal }) => {
 
 						<FormControl mt="3">
 							<FormControl.Label>Image</FormControl.Label>
-							<Button onPress={_pickImage}>
-								<Text>Choose File</Text>
+							<Button
+								onPress={_pickImage}
+								variant="outline"
+								colorScheme="primary"
+								leftIcon={
+									<Icon as={Ionicons} name="cloud-upload-outline" size="sm" />
+								}
+							>
+								Upload Image
 							</Button>
 
 							{/* <Input placeholder="Choose Image" /> */}
@@ -107,9 +115,7 @@ const TripModal = ({ showModal, setShowModal }) => {
 							<Button
 								variant="ghost"
 								colorScheme="blueGray"
-								onPress={() => {
-									setShowModal(false);
-								}}
+								onPress={tripStore.closeModal}
 							>
 								Cancel
 							</Button>
@@ -122,6 +128,6 @@ const TripModal = ({ showModal, setShowModal }) => {
 	);
 };
 
-export default TripModal;
+export default observer(TripModal);
 
 const styles = StyleSheet.create({});

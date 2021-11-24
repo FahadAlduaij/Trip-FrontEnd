@@ -15,7 +15,7 @@ import {
 } from "native-base";
 import { baseURL } from "../../stores/instance";
 
-const TripItem = ({ trip, navigation, route }) => {
+const TripItem = ({ trip, navigation }) => {
 	return (
 		<Pressable
 			onPress={() => navigation.navigate("TripDetail", { trip: trip })}

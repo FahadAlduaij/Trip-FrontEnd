@@ -27,7 +27,7 @@ class AuthStore {
 		try {
 			const res = await instance.post("/signup", userData);
 			this.setUser(res.data.token);
-			navigation.replace("timeline");
+			navigation.replace("Tabs");
 		} catch (error) {
 			console.log("AuthStore -> signup -> error", error);
 			toast.show({
@@ -42,8 +42,7 @@ class AuthStore {
 		try {
 			const res = await instance.post("/signin", user);
 			this.setUser(res.data.token);
-			console.log(res.data.token);
-			navigation.replace("timeline");
+			navigation.replace("Tabs");
 		} catch (error) {
 			toast.show({
 				status: "error",
