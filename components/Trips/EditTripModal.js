@@ -1,40 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Button, Modal, FormControl, Input, Icon, useToast } from "native-base";
 import { StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import {
-	Button,
-	Modal,
-	FormControl,
-	Input,
-	Box,
-	Icon,
-	useToast,
-} from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
-// stores
+// Stores
 import tripStore from "../../stores/tripStore";
-import { observer } from "mobx-react";
 
-const TripModal = () => {
-	const [trip, setTrip] = useState({
+const EditTripModal = ({ trip }) => {
+	const [updatedTrip, setUpdatedTrip] = useState({
 		title: "",
 		description: "",
 		image: "",
 	});
-	const toast = useToast();
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		if (Platform.OS !== "web") {
-	// 			const { status } =
-	// 				await ImagePicker.requestMediaLibraryPermissionsAsync();
-	// 			if (status !== "granted") {
-	// 				alert("Sorry, we need camera roll permissions to make this work!");
-	// 			}
-	// 		}
-	// 	})();
-	// }, []);
+	const [showModal, setShowModal] = useState(false);
+	const toast = useToast();
 
 	const _pickImage = async () => {
 		try {
@@ -55,7 +36,7 @@ const TripModal = () => {
 					name: filename,
 					type: match ? `image/${match[1]}` : `image`,
 				};
-				setTrip({ ...trip, image: image });
+				setUpdatedTrip({ ...updatedTrip, image: image });
 			}
 		} catch (error) {
 			console.log(error);
@@ -63,28 +44,41 @@ const TripModal = () => {
 	};
 
 	const handleSubmit = () => {
-		tripStore.addTrip(trip, toast);
-		tripStore.closeModal();
+		tripStore.editTrip(trip, updatedTrip, toast);
+		// tripStore.closeModal();
 	};
 
 	return (
-		<Box>
-			<Modal isOpen={tripStore.showModal} onClose={tripStore.closeModal}>
+		<>
+			<Button style={styles.btnEditTrip} onPress={() => setShowModal(true)}>
+				Edit Trip
+			</Button>
+
+			<Modal isOpen={showModal} onClose={() => setShowModal(false)}>
 				<Modal.Content maxWidth="400px">
 					<Modal.CloseButton />
-					<Modal.Header>New Trip</Modal.Header>
-
+					<Modal.Header>Edit Trip</Modal.Header>
 					<Modal.Body>
 						<FormControl>
-							<FormControl.Label>Title</FormControl.Label>
+							<FormControl.Label>Edit Name</FormControl.Label>
 							<Input
-								placeholder="Enter title"
-								onChangeText={(title) => setTrip({ ...trip, title })}
+								placeholder="Enter Title"
+								onChangeText={(title) =>
+									setUpdatedTrip({ ...updatedTrip, title })
+								}
 							/>
 						</FormControl>
-
 						<FormControl mt="3">
-							<FormControl.Label>Image</FormControl.Label>
+							<FormControl.Label>Edit Description</FormControl.Label>
+							<Input
+								placeholder="Enter Description"
+								onChangeText={(description) =>
+									setUpdatedTrip({ ...updatedTrip, description })
+								}
+							/>
+						</FormControl>
+						<FormControl mt="3">
+							<FormControl.Label>Change Image</FormControl.Label>
 							<Button
 								onPress={_pickImage}
 								variant="outline"
@@ -95,44 +89,38 @@ const TripModal = () => {
 							>
 								Upload Image
 							</Button>
-
-							{/* <Input placeholder="Choose Image" /> */}
-						</FormControl>
-
-						<FormControl mt="3">
-							<FormControl.Label>Description</FormControl.Label>
-							<Input
-								placeholder="Enter description"
-								onChangeText={(description) =>
-									setTrip({ ...trip, description })
-								}
-							/>
 						</FormControl>
 					</Modal.Body>
-
 					<Modal.Footer>
 						<Button.Group space={2}>
 							<Button
 								variant="ghost"
 								colorScheme="blueGray"
-								onPress={tripStore.closeModal}
+								onPress={() => {
+									setShowModal(false);
+								}}
 							>
 								Cancel
 							</Button>
 							<Button style={styles.btnCreate} onPress={handleSubmit}>
-								Create
+								Save
 							</Button>
 						</Button.Group>
 					</Modal.Footer>
 				</Modal.Content>
 			</Modal>
-		</Box>
+		</>
 	);
 };
 
-export default observer(TripModal);
+export default EditTripModal;
 
 const styles = StyleSheet.create({
+	btnEditTrip: {
+		backgroundColor: "#737373",
+		margin: 5,
+		width: 100,
+	},
 	btnCreate: {
 		backgroundColor: "#0891b2",
 	},

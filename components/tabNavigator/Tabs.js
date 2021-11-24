@@ -36,7 +36,11 @@ const Tab = createBottomTabNavigator();
 const Tabs = ({ setShowModal, navigation }) => {
   return (
     <Tab.Navigator
-      initialRouteName={"UserProfileMain"}
+
+      
+
+      initialRouteName={"timeline"}
+
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
@@ -46,7 +50,11 @@ const Tabs = ({ setShowModal, navigation }) => {
           alignItems: "center",
           position: "absolute",
           elevation: 0,
-          backgroundColor: "#d4d4d4",
+
+          
+
+          backgroundColor: "black",
+
           height: 80,
           ...styles.shadow,
         },

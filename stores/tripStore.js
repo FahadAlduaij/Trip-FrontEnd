@@ -37,7 +37,7 @@ class TripStore {
 		}
 	};
 
-	addTrip = async (newTrip) => {
+	addTrip = async (newTrip, toast) => {
 		try {
 			const formData = new FormData();
 			for (const key in newTrip) {
@@ -45,17 +45,37 @@ class TripStore {
 			}
 
 			const response = await instance.post("/trips", formData);
-			this.trips.push(response.data);
+			runInAction(() => {
+				this.trips.push(response.data);
+				this.trips.reverse();
+			});
+
+			toast.show({
+				title: "Trip Created",
+				status: "success",
+				placement: "top",
+			});
 		} catch (error) {
 			console.error("tripStore --> addTrip", error);
+			toast.show({
+				title: "Error",
+				status: "error",
+				description: "Try Again",
+				placement: "top",
+			});
 		}
 	};
 
-	editTrip = async (updatedTrip) => {
+	editTrip = async (trip, updatedTrip, toast) => {
 		try {
-			const res = await instance.put(`/trips/${updatedTrip._id}`, updatedTrip);
+			const formData = new FormData();
+			for (const key in updatedTrip) {
+				formData.append(key, updatedTrip[key]);
+			}
 
-			const trip = this.trips.find((trip) => trip._id === updatedTrip._id);
+			const res = await instance.put(`/trips/${trip._id}`, formData);
+
+			const trip = this.trips.find((_trip) => _trip._id === updatedTrip._id);
 			// for (const key in trip) trip[key] = updatedTrip[key];
 			trip = res.data;
 		} catch (error) {
@@ -63,13 +83,27 @@ class TripStore {
 		}
 	};
 
-	deleteTrip = async (tripId) => {
+	deleteTrip = async (trip, toast, navigation) => {
 		try {
-			await instance.delete(`/trips/${tripId}`);
+			await instance.delete(`/trips/${trip._id}`);
+			runInAction(() => {
+				this.trips = this.trips.filter((_trip) => _trip._id !== trip._id);
+				toast.show({
+					title: "Trip Deleted",
+					status: "success",
+					placement: "top",
+				});
+			});
 
-			this.trips = this.trips.filter((trip) => trip._id !== tripId);
+			navigation.navigate("Tabs");
 		} catch (error) {
 			console.log("TripStore -> deleteTrip -> error", error);
+			toast.show({
+				title: "Unauthorized",
+				status: "error",
+				description: "You are not the owner",
+				placement: "top",
+			});
 		}
 	};
 }

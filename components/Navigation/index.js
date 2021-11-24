@@ -8,6 +8,7 @@ import Signin from "../Authentication/Signin";
 import Signup from "../Authentication/Signup";
 import Tabs from "../tabNavigator/Tabs";
 import TripDetail from "../Trips/TripDetail";
+import ProfilePage from "../Profile/ProfilePage";
 
 //stores
 import authStore from "../../stores/authStore";
@@ -16,7 +17,11 @@ const RootNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
 
   return (
-    <Navigator initialRouteName={"Home"}>
+
+    
+
+    <Navigator initialRouteName={"Tabs"}>
+
       {/* Screen for Logged in Users */}
       <Screen
         name="Tabs"
@@ -28,6 +33,14 @@ const RootNavigator = () => {
       <Screen
         name="TripDetail"
         component={TripDetail}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Screen
+        name="ProfilePage"
+        component={ProfilePage}
         options={{
           headerShown: false,
         }}

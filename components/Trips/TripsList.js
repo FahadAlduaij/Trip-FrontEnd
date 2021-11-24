@@ -9,10 +9,10 @@ import TripItem from "./TripItem";
 import tripStore from "../../stores/tripStore";
 
 const TripsList = ({ navigation }) => {
-	const tripList = tripStore.trips.map((trip) => (
-		<TripItem trip={trip} key={trip._id} navigation={navigation} />
-	));
-	return <ScrollView horizontal={true}>{tripList}</ScrollView>;
+  const tripList = tripStore.trips.map((trip) => (
+    <TripItem trip={trip} key={trip._id} navigation={navigation} />
+  ));
+  return <ScrollView>{tripList}</ScrollView>;
 };
 
 export default observer(TripsList);
