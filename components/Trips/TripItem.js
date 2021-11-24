@@ -6,11 +6,12 @@ import {
 	MaterialCommunityIcons,
 	Feather,
 } from "react-native-vector-icons";
-import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
 import { Pressable } from "native-base";
+
+// Stores
 import { baseURL } from "../../stores/instance";
-import authStore from "../../stores/authStore";
 
 const TripItem = ({ trip, navigation }) => {
 	const user = trip.owner;

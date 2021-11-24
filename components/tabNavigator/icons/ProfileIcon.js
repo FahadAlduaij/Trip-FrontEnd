@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { View, Image } from "react-native";
 import { Pressable } from "native-base";
 
 const ProfileIcon = ({ navigation, focused }) => {
@@ -22,15 +22,6 @@ const ProfileIcon = ({ navigation, focused }) => {
 						marginLeft: 3,
 					}}
 				/>
-
-				{/* <Text
-                style={{
-                    color: focused ? "#0891b2" : "#748c94",
-                    fontSize: 12,
-                }}
-            >
-                Profile
-            </Text> */}
 			</Pressable>
 		</View>
 	);

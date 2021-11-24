@@ -1,6 +1,5 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
-import { Pressable } from "native-base";
+import { View, Image } from "react-native";
 
 const ChatIcon = ({ navigation, focused }) => {
 	return (
@@ -19,11 +18,6 @@ const ChatIcon = ({ navigation, focused }) => {
 					tintColor: focused ? "#0891b2" : "#748c94",
 				}}
 			/>
-			{/* <Text
-            style={{ color: focused ? "#0891b2" : "#748c94", fontSize: 12 }}
-        >
-            Chattttt
-        </Text> */}
 		</View>
 	);
 };

@@ -1,8 +1,10 @@
-import "react-native-gesture-handler";
 import React, { useState } from "react";
+import "react-native-gesture-handler";
 import { Text, TextInput, View, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Pressable, useToast, ScrollView } from "native-base";
+
+// Stores
 import authStore from "../../stores/authStore";
 
 const Signup = ({ navigation }) => {

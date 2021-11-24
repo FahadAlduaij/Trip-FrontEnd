@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { observer } from "mobx-react";
 import { StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import {
@@ -14,7 +15,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 // stores
 import tripStore from "../../stores/tripStore";
-import { observer } from "mobx-react";
 
 const TripModal = () => {
 	const [trip, setTrip] = useState({
@@ -24,17 +24,17 @@ const TripModal = () => {
 	});
 	const toast = useToast();
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		if (Platform.OS !== "web") {
-	// 			const { status } =
-	// 				await ImagePicker.requestMediaLibraryPermissionsAsync();
-	// 			if (status !== "granted") {
-	// 				alert("Sorry, we need camera roll permissions to make this work!");
-	// 			}
-	// 		}
-	// 	})();
-	// }, []);
+	useEffect(() => {
+		(async () => {
+			if (Platform.OS !== "web") {
+				const { status } =
+					await ImagePicker.requestMediaLibraryPermissionsAsync();
+				if (status !== "granted") {
+					alert("Sorry, we need camera roll permissions to make this work!");
+				}
+			}
+		})();
+	}, []);
 
 	const _pickImage = async () => {
 		try {

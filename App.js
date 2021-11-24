@@ -1,14 +1,17 @@
 import React from "react";
 import { NativeBaseProvider } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
-import RootNavigator from "./components/Navigation/index";
+import { SSRProvider } from "@react-aria/ssr";
+import RootNavigator from "./Components/Navigation/index";
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <NativeBaseProvider>
-        <RootNavigator />
-      </NativeBaseProvider>
-    </NavigationContainer>
-  );
+	return (
+		<SSRProvider>
+			<NavigationContainer>
+				<NativeBaseProvider>
+					<RootNavigator />
+				</NativeBaseProvider>
+			</NavigationContainer>
+		</SSRProvider>
+	);
 }

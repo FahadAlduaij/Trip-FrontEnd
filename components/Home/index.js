@@ -1,5 +1,5 @@
-import "react-native-gesture-handler";
 import React from "react";
+import "react-native-gesture-handler";
 import {
 	Text,
 	View,
@@ -11,6 +11,9 @@ import {
 } from "react-native";
 import { Pressable } from "native-base";
 
+// Stores
+import authStore from "../../stores/authStore";
+
 const Home = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.body}>
@@ -21,7 +24,15 @@ const Home = ({ navigation }) => {
 				<View style={styles.container}>
 					<Image source={require("../images/logo.png")} style={styles.logo} />
 					<TouchableOpacity style={styles.button}>
-						<Pressable onPress={() => navigation.navigate("Signin")}>
+						<Pressable
+							onPress={() => {
+								if (authStore.user) {
+									navigation.navigate("Tabs");
+								} else {
+									navigation.navigate("Signin");
+								}
+							}}
+						>
 							<Text
 								style={{
 									color: "#ffff",

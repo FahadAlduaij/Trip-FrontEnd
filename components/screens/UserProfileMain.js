@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import React from "react";
+import { View, Text, ScrollView } from "react-native";
 import { Avatar, Button } from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { Feather } from "react-native-vector-icons/";
+import { observer } from "mobx-react";
 
 // Components
 import TripItem from "../Profile/TripItem";
+import EditProfileModal from "../Profile/EditProfileModal";
 
 // Stores
 import authStore from "../../stores/authStore";
 import tripStore from "../../stores/tripStore";
-import EditProfileModal from "../Profile/EditProfileModal";
-import { observer } from "mobx-react";
 import { baseURL } from "../../stores/instance";
 
 function UserProfileMain({ navigation }) {
@@ -201,6 +201,7 @@ function UserProfileMain({ navigation }) {
 				}}
 			>
 				<EditProfileModal />
+
 				<Button
 					icon={<Feather name="settings" color="white" size={22} />}
 					buttonStyle={{ backgroundColor: "#2f8ce3" }}
