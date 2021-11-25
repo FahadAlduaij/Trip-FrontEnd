@@ -45,7 +45,12 @@ const EditTripModal = ({ trip }) => {
 	};
 
 	const handleSubmit = () => {
-		tripStore.editTrip(trip, authStore.user, updatedTrip, toast);
+		tripStore.editTrip(
+			trip,
+			authStore.user ? authStore.user : "",
+			updatedTrip,
+			toast
+		);
 		setShowModal(false);
 	};
 

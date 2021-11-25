@@ -8,7 +8,7 @@ import { StyleSheet } from "react-native";
 import authStore from "../../stores/authStore";
 
 const EditProfileModal = ({ showModal, setShowModal }) => {
-	const [update, setUpdate] = useState(authStore.user);
+	const [update, setUpdate] = useState(authStore.user ? authStore.user : "");
 
 	const _pickImage = async () => {
 		try {

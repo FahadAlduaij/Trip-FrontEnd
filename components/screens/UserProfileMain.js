@@ -17,7 +17,7 @@ import { baseURL } from "../../stores/instance";
 
 function UserProfileMain({ navigation }) {
 	const [showModal, setShowModal] = useState(false);
-	const user = authStore.user;
+	const user = authStore.user ? authStore.user : "";
 
 	const trips = tripStore.trips
 		.filter((trip) => trip.owner._id === user._id)
