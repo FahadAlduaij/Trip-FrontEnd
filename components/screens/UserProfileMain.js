@@ -78,7 +78,7 @@ function UserProfileMain({ navigation }) {
 								backgroundColor: "#0f1010",
 							}}
 						>
-							170
+							{trips.length}
 						</Text>
 						<Text
 							style={{

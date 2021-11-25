@@ -86,17 +86,30 @@ class AuthStore {
 			);
 		}
 	};
-	editUser = async (updatedProfile) => {
+	editUser = async (updatedProfile, toast) => {
 		try {
 			const formData = new FormData();
 			for (const key in updatedProfile) {
 				formData.append(key, updatedProfile[key]);
 			}
 			const res = await instance.put(`/${updatedProfile._id}`, formData);
+			runInAction(() => {
+				this.user = res.data;
+			});
 
-			this.user = res.data;
+			toast.show({
+				title: "Profile Updated",
+				status: "success",
+				placement: "top",
+			});
 		} catch (error) {
 			console.error("profileStore --> updateProfile", error);
+			toast.show({
+				title: "Unauthorized",
+				status: "error",
+				description: "You can only edit your profile. ",
+				placement: "top",
+			});
 		}
 	};
 }

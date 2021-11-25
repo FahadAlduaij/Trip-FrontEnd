@@ -72,21 +72,21 @@ const TripModal = () => {
 			<Modal isOpen={tripStore.showModal} onClose={tripStore.closeModal}>
 				<Modal.Content maxWidth="400px">
 					<Modal.CloseButton />
-					<Modal.Header>New Trip</Modal.Header>
+					<Modal.Header>Post</Modal.Header>
 
 					<Modal.Body>
 						<FormControl>
-							<FormControl.Label>Title</FormControl.Label>
+							<FormControl.Label>Trip Title</FormControl.Label>
 							<Input
-								placeholder="Enter title"
+								placeholder=" Enter title"
 								onChangeText={(title) => setTrip({ ...trip, title })}
 							/>
 						</FormControl>
 
 						<FormControl mt="3">
-							<FormControl.Label>Description</FormControl.Label>
+							<FormControl.Label>Trip Description</FormControl.Label>
 							<Input
-								placeholder="Enter description"
+								placeholder=" Enter description"
 								onChangeText={(description) =>
 									setTrip({ ...trip, description })
 								}
@@ -94,7 +94,7 @@ const TripModal = () => {
 						</FormControl>
 
 						<FormControl mt="3">
-							<FormControl.Label>Image</FormControl.Label>
+							<FormControl.Label>Trip Image</FormControl.Label>
 							<Button
 								onPress={_pickImage}
 								variant="outline"
@@ -120,7 +120,7 @@ const TripModal = () => {
 								Cancel
 							</Button>
 							<Button style={styles.btnCreate} onPress={handleSubmit}>
-								Create
+								Post
 							</Button>
 						</Button.Group>
 					</Modal.Footer>

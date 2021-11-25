@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, FormControl, Input, Icon, Button } from "native-base";
+import { Modal, FormControl, Input, Icon, Button, useToast } from "native-base";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
@@ -9,6 +9,7 @@ import authStore from "../../stores/authStore";
 
 const EditProfileModal = ({ showModal, setShowModal }) => {
 	const [update, setUpdate] = useState(authStore.user ? authStore.user : "");
+	const toast = useToast();
 
 	const _pickImage = async () => {
 		try {
@@ -16,7 +17,6 @@ const EditProfileModal = ({ showModal, setShowModal }) => {
 				mediaTypes: ImagePicker.MediaTypeOptions.All,
 				allowsEditing: true,
 				aspect: [4, 3],
-
 				quality: 1,
 			});
 
@@ -37,7 +37,7 @@ const EditProfileModal = ({ showModal, setShowModal }) => {
 	};
 
 	const handleSubmit = () => {
-		authStore.editUser(update);
+		authStore.editUser(update, toast);
 		setShowModal(false);
 	};
 
@@ -50,15 +50,21 @@ const EditProfileModal = ({ showModal, setShowModal }) => {
 			<Modal isOpen={showModal} onClose={() => setShowModal(false)}>
 				<Modal.Content>
 					<Modal.CloseButton />
-					<Modal.Header>Edit Profile</Modal.Header>
+					<Modal.Header>Profile</Modal.Header>
 					<Modal.Body>
 						<FormControl>
 							<FormControl.Label>Edit Name</FormControl.Label>
-							<Input onChangeText={(name) => setUpdate({ ...update, name })} />
+							<Input
+								placeholder="Enter Name"
+								onChangeText={(name) => setUpdate({ ...update, name })}
+							/>
 						</FormControl>
 						<FormControl mt="3">
 							<FormControl.Label>Edit Bio</FormControl.Label>
-							<Input onChangeText={(bio) => setUpdate({ ...update, bio })} />
+							<Input
+								placeholder="Enter Bio"
+								onChangeText={(bio) => setUpdate({ ...update, bio })}
+							/>
 						</FormControl>
 						<FormControl mt="3">
 							<FormControl.Label>Change Image</FormControl.Label>

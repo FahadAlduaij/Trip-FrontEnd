@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "react-native-gesture-handler";
 import { Text, TextInput, View, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Pressable, useToast } from "native-base";
+import { Center, HStack, Pressable, useToast } from "native-base";
 import authStore from "../../stores/authStore";
 
 const Signin = ({ navigation }) => {
@@ -55,12 +55,15 @@ const Signin = ({ navigation }) => {
 						</Text>
 					</Pressable>
 				</LinearGradient>
-				<Text style={styles.signup}>
-					Don't have an account?
-					<Pressable onPress={() => navigation.navigate("Signup")}>
-						<Text style={{ color: "#ffff" }}> Sign up</Text>
-					</Pressable>
-				</Text>
+
+				<Center>
+					<HStack>
+						<Text style={styles.signup}>Don't have an account? </Text>
+						<Pressable onPress={() => navigation.navigate("Signup")}>
+							<Text style={{ color: "#ffff" }}> Sign up</Text>
+						</Pressable>
+					</HStack>
+				</Center>
 			</View>
 		</SafeAreaView>
 	);
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
 		color: "#858585",
 	},
 	login: {
-		marginBottom: 120,
+		marginBottom: 50,
 		color: "#ffff",
 		marginLeft: 25,
 		fontSize: 35,

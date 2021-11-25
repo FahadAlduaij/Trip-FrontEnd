@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import "react-native-gesture-handler";
 import { Text, TextInput, View, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Pressable, useToast, ScrollView } from "native-base";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import {
+	Pressable,
+	useToast,
+	ScrollView,
+	Center,
+	HStack,
+	KeyboardAvoidingView,
+} from "native-base";
 
 // Stores
 import authStore from "../../stores/authStore";
@@ -11,8 +20,8 @@ const Signup = ({ navigation }) => {
 	const toast = useToast();
 
 	const [user, setUser] = useState({
-		firstName: "",
-		lastName: "",
+		name: "",
+		email: "",
 		username: "",
 		password: "",
 	});
@@ -22,67 +31,77 @@ const Signup = ({ navigation }) => {
 	};
 
 	return (
-		<ScrollView>
-			<SafeAreaView style={styles.body}>
-				<View style={styles.container}>
-					<Text style={styles.login}>Sign up</Text>
-					<Text style={styles.outsidebox}>Username</Text>
-					<TextInput
-						style={styles.box}
-						placeholder="  Username"
-						placeholderTextColor="#858585"
-						onChangeText={(username) => setUser({ ...user, username })}
-					/>
-					<Text style={styles.outsidebox}>First Name</Text>
-					<TextInput
-						style={styles.box}
-						placeholder="  First Name"
-						placeholderTextColor="#858585"
-						onChangeText={(firstName) => setUser({ ...user, firstName })}
-					/>
-					<Text style={styles.outsidebox}>Last Name</Text>
-					<TextInput
-						style={styles.box}
-						placeholder="  Last Name"
-						placeholderTextColor="#858585"
-						onChangeText={(lastName) => setUser({ ...user, lastName })}
-					/>
-					<Text style={styles.outsidebox}>Password</Text>
-					<TextInput
-						style={styles.box}
-						secureTextEntry={true}
-						placeholder="  Pick a strong password"
-						placeholderTextColor="#858585"
-						onChangeText={(password) => setUser({ ...user, password })}
-					/>
-					<LinearGradient
-						colors={["#1e81b0", "#154c79"]}
-						style={styles.button}
-						start={{ y: 0.0, x: 0.0 }}
-						end={{ y: 0.0, x: 1.0 }}
-					>
-						<Pressable onPress={handleSubmit}>
-							<Text
-								style={{
-									color: "#ffff",
-									alignSelf: "center",
-									textAlignVertical: "center",
-									fontSize: 20,
-								}}
-							>
-								Create account
-							</Text>
-						</Pressable>
-					</LinearGradient>
-					<Text style={styles.signup}>
-						Already have an account?{" "}
-						<Pressable onPress={() => navigation.navigate("Signin")}>
-							<Text style={{ color: "#ffff" }}>Sign in</Text>
-						</Pressable>
-					</Text>
-				</View>
-			</SafeAreaView>
-		</ScrollView>
+		<KeyboardAwareScrollView>
+			<ScrollView>
+				<SafeAreaView style={styles.body}>
+					<View style={styles.container}>
+						<Text style={styles.login}>Sign up</Text>
+
+						<Text style={styles.outsidebox}>Name</Text>
+						<TextInput
+							style={styles.box}
+							placeholder=" Enter your name"
+							placeholderTextColor="#858585"
+							onChangeText={(name) => setUser({ ...user, name })}
+						/>
+
+						<Text style={styles.outsidebox}>Email</Text>
+						<TextInput
+							style={styles.box}
+							placeholder=" Enter email"
+							placeholderTextColor="#858585"
+							onChangeText={(email) => setUser({ ...user, email })}
+						/>
+
+						<Text style={styles.outsidebox}>Username</Text>
+						<TextInput
+							style={styles.box}
+							placeholder="  Enter username"
+							placeholderTextColor="#858585"
+							onChangeText={(username) => setUser({ ...user, username })}
+						/>
+
+						<Text style={styles.outsidebox}>Password</Text>
+						<TextInput
+							style={styles.box}
+							secureTextEntry={true}
+							placeholder="  Pick a strong password"
+							placeholderTextColor="#858585"
+							onChangeText={(password) => setUser({ ...user, password })}
+						/>
+
+						<LinearGradient
+							colors={["#1e81b0", "#154c79"]}
+							style={styles.button}
+							start={{ y: 0.0, x: 0.0 }}
+							end={{ y: 0.0, x: 1.0 }}
+						>
+							<Pressable onPress={handleSubmit}>
+								<Text
+									style={{
+										color: "#ffff",
+										alignSelf: "center",
+										textAlignVertical: "center",
+										fontSize: 20,
+									}}
+								>
+									Create account
+								</Text>
+							</Pressable>
+						</LinearGradient>
+
+						<Center>
+							<HStack>
+								<Text style={styles.signup}>Already have an account? </Text>
+								<Pressable onPress={() => navigation.navigate("Signin")}>
+									<Text style={{ color: "#ffff" }}> Sign in</Text>
+								</Pressable>
+							</HStack>
+						</Center>
+					</View>
+				</SafeAreaView>
+			</ScrollView>
+		</KeyboardAwareScrollView>
 	);
 };
 
@@ -92,6 +111,7 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 	},
 	body: {
+		height: 900,
 		backgroundColor: "#101010",
 		flex: 1,
 	},
@@ -131,7 +151,7 @@ const styles = StyleSheet.create({
 		color: "#858585",
 	},
 	login: {
-		marginBottom: 120,
+		marginBottom: 50,
 		color: "#ffff",
 		marginLeft: 25,
 		fontSize: 35,

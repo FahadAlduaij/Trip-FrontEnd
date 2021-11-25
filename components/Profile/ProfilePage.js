@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Avatar, Button } from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 
@@ -12,7 +12,10 @@ import { observer } from "mobx-react";
 import { baseURL } from "../../stores/instance";
 
 const ProfilePage = ({ route, navigation }) => {
+	const [follow, setFollow] = useState("Follow");
+
 	const { trip } = route.params;
+
 	const user = trip.owner;
 
 	const trips = tripStore.trips
@@ -20,6 +23,14 @@ const ProfilePage = ({ route, navigation }) => {
 		.map((_trip) => (
 			<TripItem trip={_trip} key={_trip._id} navigation={navigation} />
 		));
+
+	const handleFollow = () => {
+		if (follow === "Follow") {
+			setFollow("UnFollow");
+		} else {
+			setFollow("Follow");
+		}
+	};
 
 	return (
 		<ScrollView style={{ backgroundColor: "#0f1010", paddingTop: 35 }}>
@@ -74,7 +85,7 @@ const ProfilePage = ({ route, navigation }) => {
 								backgroundColor: "#0f1010",
 							}}
 						>
-							170
+							{trips.length}
 						</Text>
 						<Text
 							style={{
@@ -190,7 +201,7 @@ const ProfilePage = ({ route, navigation }) => {
 				<View
 					style={{
 						flexDirection: "row",
-						justifyContent: "space-around",
+						justifyContent: "flex-end",
 						alignItems: "center",
 						width: "100%",
 						paddingHorizontal: 6,
@@ -198,11 +209,15 @@ const ProfilePage = ({ route, navigation }) => {
 					}}
 				>
 					<Button
-						title="Follow"
+						onPress={handleFollow}
+						title={follow}
 						buttonStyle={{
-							backgroundColor: "#2f8ce3",
+							backgroundColor: "#154c79",
 						}}
-						containerStyle={{ width: "82%", marginTop: 10 }}
+						containerStyle={{
+							width: "40%",
+							margin: 5,
+						}}
 					/>
 				</View>
 			</View>

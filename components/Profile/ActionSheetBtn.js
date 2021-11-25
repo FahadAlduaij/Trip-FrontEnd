@@ -38,7 +38,10 @@ export function ActionSheetBtn({ setShowModal }) {
 								name="home"
 							/>
 						}
-						onPress={() => navigation.navigate("timeline")}
+						onPress={() => {
+							navigation.navigate("timeline");
+							onClose();
+						}}
 					>
 						Timeline
 					</Actionsheet.Item>
@@ -53,7 +56,10 @@ export function ActionSheetBtn({ setShowModal }) {
 								name="search"
 							/>
 						}
-						onPress={() => navigation.navigate("Search")}
+						onPress={() => {
+							navigation.navigate("Search");
+							onClose();
+						}}
 					>
 						Search
 					</Actionsheet.Item>
@@ -68,12 +74,18 @@ export function ActionSheetBtn({ setShowModal }) {
 								name="edit"
 							/>
 						}
-						onPress={() => setShowModal(true)}
+						onPress={() => {
+							setShowModal(true);
+							onClose();
+						}}
 					>
 						Edit Profile
 					</Actionsheet.Item>
 					<Actionsheet.Item
-						onPress={handleSignOut}
+						onPress={() => {
+							handleSignOut();
+							onClose();
+						}}
 						startIcon={
 							<Icon
 								as={Entypo}

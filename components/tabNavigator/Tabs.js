@@ -38,7 +38,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 
 					backgroundColor: "black",
 
-					height: 80,
+					height: 100,
 					...styles.shadow,
 				},
 			}}
