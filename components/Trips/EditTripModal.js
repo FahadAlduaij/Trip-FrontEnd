@@ -7,13 +7,14 @@ import { Ionicons } from "@expo/vector-icons";
 // Stores
 import tripStore from "../../stores/tripStore";
 import authStore from "../../stores/authStore";
+import { observer } from "mobx-react";
 
 const EditTripModal = ({ trip }) => {
 	const [showModal, setShowModal] = useState(false);
 	const [updatedTrip, setUpdatedTrip] = useState({
-		title: "",
-		description: "",
-		image: "",
+		title: trip.title,
+		description: trip.description,
+		image: trip.image,
 	});
 
 	const toast = useToast();
@@ -70,8 +71,9 @@ const EditTripModal = ({ trip }) => {
 					<Modal.Header>Edit Trip</Modal.Header>
 					<Modal.Body>
 						<FormControl>
-							<FormControl.Label>Edit Name</FormControl.Label>
+							<FormControl.Label>Edit Title</FormControl.Label>
 							<Input
+								defaultValue={trip.title}
 								placeholder="Enter Title"
 								onChangeText={(title) =>
 									setUpdatedTrip({ ...updatedTrip, title })
@@ -81,6 +83,7 @@ const EditTripModal = ({ trip }) => {
 						<FormControl mt="3">
 							<FormControl.Label>Edit Description</FormControl.Label>
 							<Input
+								defaultValue={trip.description}
 								placeholder="Enter Description"
 								onChangeText={(description) =>
 									setUpdatedTrip({ ...updatedTrip, description })
@@ -123,7 +126,7 @@ const EditTripModal = ({ trip }) => {
 	);
 };
 
-export default EditTripModal;
+export default observer(EditTripModal);
 
 const styles = StyleSheet.create({
 	btnEditTrip: {

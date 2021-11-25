@@ -69,41 +69,39 @@ class TripStore {
 
 	editTrip = async (tripId, user, updatedTrip, toast) => {
 		try {
-			// Because title is required in Schema but no need to rewrite it when updating
+			if (user._id === tripId.owner._id) {
+				const formData = new FormData();
+				for (const key in updatedTrip) {
+					formData.append(key, updatedTrip[key]);
+				}
 
-			if (!updatedTrip.title) {
-				updatedTrip.title = tripId.title;
+				const res = await instance.put(`/trips/${tripId._id}`, formData);
+
+				runInAction(() => {
+					this.trips = this.trips.map((_trip) =>
+						_trip._id === tripId._id ? res.data : _trip
+					);
+				});
+
+				toast.show({
+					title: "Trip Updated",
+					status: "success",
+					placement: "top",
+				});
+			} else {
+				toast.show({
+					title: "Unauthorized",
+					status: "error",
+					description: "You are not the owner of this trip.",
+					placement: "top",
+				});
 			}
-
-			if (!updatedTrip.description) {
-				updatedTrip.description = tripId.description;
-			}
-
-			if (!updatedTrip.image) {
-				updatedTrip.image = tripId.image;
-			}
-
-			const formData = new FormData();
-			for (const key in updatedTrip) {
-				formData.append(key, updatedTrip[key]);
-			}
-
-			const res = await instance.put(`/trips/${tripId._id}`, formData);
-
-			const trip = this.trips.find((_trip) => _trip._id === tripId._id);
-			trip = res.data;
-
-			toast.show({
-				title: "Trip Updated",
-				status: "success",
-				placement: "top",
-			});
 		} catch (error) {
 			console.error("tripStore --> editTrip", error);
 			toast.show({
-				title: "Unauthorized",
+				title: "Error",
 				status: "error",
-				description: "You are not the owner of this trip.",
+				description: "Try again.",
 				placement: "top",
 			});
 		}
