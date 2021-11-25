@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 
-export default function Search() {
+// Components
+import SearchTripsList from "../SearchTrips/SearchTripsList";
+
+export default function Search({ navigation }) {
+	const [query, setQuery] = useState("");
 	return (
 		<View
 			style={{
 				backgroundColor: "#0f1010",
 				height: "100%",
 				width: "100%",
-				paddingTop: 40,
+				paddingTop: 50,
 			}}
 		>
 			<View
@@ -23,11 +27,13 @@ export default function Search() {
 				}}
 			>
 				<TextInput
+					onChangeText={(value) => setQuery(value)}
 					placeholder="Search for Trips!"
 					placeholderTextColor="#e7e7e7"
 					style={{ fontSize: 15, color: "white", paddingHorizontal: 5 }}
 				/>
 			</View>
+			<SearchTripsList query={query} navigation={navigation} />
 		</View>
 	);
 }
