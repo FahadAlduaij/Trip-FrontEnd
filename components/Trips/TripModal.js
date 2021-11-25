@@ -134,6 +134,7 @@ export default observer(TripModal);
 
 const styles = StyleSheet.create({
 	btnCreate: {
-		backgroundColor: "#0891b2",
+		backgroundColor: "#154c79",
+		width: 80,
 	},
 });

@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { instance } from "./instance";
 import decode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -56,7 +56,9 @@ class AuthStore {
 		try {
 			delete instance.defaults.headers.common.Authorization;
 			await AsyncStorage.removeItem("myToken");
-			this.user = null;
+			runInAction(() => {
+				this.user = null;
+			});
 		} catch (error) {
 			console.log(
 				"🚀 ~ file: authStore.js ~ line 62 ~ AuthStore ~ signout= ~ error",

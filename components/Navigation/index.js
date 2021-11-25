@@ -13,7 +13,7 @@ import ProfilePage from "../Profile/ProfilePage";
 //stores
 
 const RootNavigator = () => {
-	const { Navigator, Screen } = createStackNavigator();
+	const { Navigator, Screen, Group } = createStackNavigator();
 
 	return (
 		<Navigator initialRouteName={"Home"}>
@@ -42,7 +42,13 @@ const RootNavigator = () => {
 			/>
 
 			{/* Auth Screen */}
-			<Screen name="Home" component={Home} options={{}} />
+			<Screen
+				name="Home"
+				component={Home}
+				options={{
+					headerShown: false,
+				}}
+			/>
 			<Screen
 				name="Signin"
 				component={Signin}

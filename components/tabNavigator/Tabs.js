@@ -74,7 +74,7 @@ const Tabs = ({ setShowModal, navigation }) => {
 									height: 60,
 									borderRadius: 35,
 									marginTop: 10,
-									backgroundColor: "#0891b2",
+									backgroundColor: "#154c79",
 									alignItems: "center",
 									justifyContent: "center",
 								}}

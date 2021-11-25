@@ -15,7 +15,7 @@ const ChatIcon = ({ navigation, focused }) => {
 				style={{
 					width: 30,
 					height: 30,
-					tintColor: focused ? "#0891b2" : "#748c94",
+					tintColor: focused ? "#154c79" : "#748c94",
 				}}
 			/>
 		</View>

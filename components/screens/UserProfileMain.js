@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Avatar, Button } from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
@@ -8,6 +8,7 @@ import { observer } from "mobx-react";
 // Components
 import TripItem from "../Profile/TripItem";
 import EditProfileModal from "../Profile/EditProfileModal";
+import ActionSheetBtn from "../Profile/ActionSheetBtn";
 
 // Stores
 import authStore from "../../stores/authStore";
@@ -15,6 +16,7 @@ import tripStore from "../../stores/tripStore";
 import { baseURL } from "../../stores/instance";
 
 function UserProfileMain({ navigation }) {
+	const [showModal, setShowModal] = useState(false);
 	const user = authStore.user;
 
 	const trips = tripStore.trips
@@ -200,13 +202,8 @@ function UserProfileMain({ navigation }) {
 					backgroundColor: "#0f1010",
 				}}
 			>
-				<EditProfileModal />
-
-				<Button
-					icon={<Feather name="settings" color="white" size={22} />}
-					buttonStyle={{ backgroundColor: "#2f8ce3" }}
-					containerStyle={{ width: "11%", marginTop: 10 }}
-				/>
+				<EditProfileModal showModal={showModal} setShowModal={setShowModal} />
+				<ActionSheetBtn setShowModal={setShowModal} />
 			</View>
 			<Divider style={{ marginTop: 10 }} />
 			<View>{trips}</View>

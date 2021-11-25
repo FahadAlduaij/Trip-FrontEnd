@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { Modal, FormControl, Input, Icon } from "native-base";
+import { Modal, FormControl, Input, Icon, Button } from "native-base";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
-import { Button } from "react-native-elements";
+import { StyleSheet } from "react-native";
 
 // Stores
 import authStore from "../../stores/authStore";
 
-const EditProfileModal = () => {
+const EditProfileModal = ({ showModal, setShowModal }) => {
 	const [update, setUpdate] = useState(authStore.user);
-
-	const [showModal, setShowModal] = useState(false);
 
 	const _pickImage = async () => {
 		try {
@@ -45,13 +43,7 @@ const EditProfileModal = () => {
 
 	return (
 		<>
-			<Button
-				onPress={() => setShowModal(true)}
-				Style={{
-					backgroundColor: "#2f8ce3",
-				}}
-				containerStyle={{ width: "82%", marginTop: 10 }}
-			>
+			<Button style={styles.btnEditProfile} onPress={() => setShowModal(true)}>
 				Edit Profile
 			</Button>
 
@@ -93,7 +85,9 @@ const EditProfileModal = () => {
 							>
 								Cancel
 							</Button>
-							<Button onPress={handleSubmit}>Save</Button>
+							<Button style={styles.btnSave} onPress={handleSubmit}>
+								Save
+							</Button>
 						</Button.Group>
 					</Modal.Footer>
 				</Modal.Content>
@@ -103,3 +97,15 @@ const EditProfileModal = () => {
 };
 
 export default EditProfileModal;
+
+const styles = StyleSheet.create({
+	btnEditProfile: {
+		backgroundColor: "#154c79",
+		width: "80%",
+		marginTop: 10,
+	},
+	btnSave: {
+		backgroundColor: "#154c79",
+		width: 80,
+	},
+});
