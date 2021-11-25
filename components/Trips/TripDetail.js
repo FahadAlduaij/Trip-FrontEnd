@@ -60,7 +60,7 @@ const TripDetail = ({ route, navigation }) => {
             </View>
           </View>
         </Pressable>
-        <View style={{ alignItems: "center", marginHorizontal: 30 }}>
+        <View style={{ alignItems: "center", marginHorizontal: 0 }}>
           <Image
             style={styles.tripImg}
             source={{ uri: baseURL + trip.image }}
@@ -109,9 +109,9 @@ const TripDetail = ({ route, navigation }) => {
         </View>
         <View style={styles.addToListContainer}>
           <Button
-            title="Add to my trips list"
+            title="Add to list"
             buttonStyle={{
-              backgroundColor: "#2f8ce3",
+              backgroundColor: "#154c79",
               alignItems: "center",
             }}
             containerStyle={{ width: "82%", marginTop: 10 }}

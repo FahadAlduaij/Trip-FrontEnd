@@ -16,6 +16,7 @@ import TimeLineIcon from "./icons/TimeLineIcon";
 import timeline from "../screens/timeline";
 import Search from "../screens/Search";
 import UserProfileMain from "../screens/UserProfileMain";
+import Chat from "../screens/Chat";
 
 // Stores
 import tripStore from "../../stores/tripStore";
@@ -23,109 +24,109 @@ import tripStore from "../../stores/tripStore";
 const Tab = createBottomTabNavigator();
 
 const Tabs = ({ setShowModal, navigation }) => {
-	return (
-		<Tab.Navigator
-			initialRouteName={"timeline"}
-			screenOptions={{
-				tabBarShowLabel: false,
-				headerShown: false,
-				tabBarStyle: {
-					display: "flex",
-					justifyContent: "space-evenly",
-					alignItems: "center",
-					position: "absolute",
-					elevation: 0,
+  return (
+    <Tab.Navigator
+      initialRouteName={"timeline"}
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerShown: false,
+        tabBarStyle: {
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          position: "absolute",
+          elevation: 0,
 
-					backgroundColor: "black",
+          backgroundColor: "black",
 
-					height: 100,
-					...styles.shadow,
-				},
-			}}
-		>
-			<Tab.Screen
-				name="timeline"
-				component={timeline}
-				options={{
-					tabBarIcon: ({ focused }) => (
-						<TimeLineIcon navigation={navigation} focused={focused} />
-					),
-				}}
-			/>
+          height: 100,
+          ...styles.shadow,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="timeline"
+        component={timeline}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TimeLineIcon navigation={navigation} focused={focused} />
+          ),
+        }}
+      />
 
-			<Tab.Screen
-				name="Search"
-				component={Search}
-				options={{
-					tabBarIcon: ({ focused }) => (
-						<SearchIcon navigation={navigation} focused={focused} />
-					),
-				}}
-			/>
-			<Tab.Screen
-				name="Modal"
-				component={TripModal}
-				options={{
-					tabBarButton: (props) => (
-						<Pressable onPress={() => tripStore.openModal()}>
-							<View
-								style={{
-									width: 60,
-									height: 60,
-									borderRadius: 35,
-									marginTop: 10,
-									backgroundColor: "#154c79",
-									alignItems: "center",
-									justifyContent: "center",
-								}}
-							>
-								<Image
-									source={require("../images/icons/plus.png")}
-									resizeMode="center"
-									style={{
-										width: 40,
-										height: 40,
-										tintColor: "#fff",
-									}}
-								/>
-							</View>
-						</Pressable>
-					),
-				}}
-			/>
-			<Tab.Screen
-				name="Chat"
-				component={Home}
-				options={{
-					tabBarIcon: ({ focused }) => (
-						<ChatIcon navigation={navigation} focused={focused} />
-					),
-				}}
-			/>
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <SearchIcon navigation={navigation} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Modal"
+        component={TripModal}
+        options={{
+          tabBarButton: (props) => (
+            <Pressable onPress={() => tripStore.openModal()}>
+              <View
+                style={{
+                  width: 60,
+                  height: 60,
+                  borderRadius: 35,
+                  marginTop: 10,
+                  backgroundColor: "#154c79",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  source={require("../images/icons/plus.png")}
+                  resizeMode="center"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    tintColor: "#fff",
+                  }}
+                />
+              </View>
+            </Pressable>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <ChatIcon navigation={navigation} focused={focused} />
+          ),
+        }}
+      />
 
-			<Tab.Screen
-				name="UserProfileMain"
-				component={UserProfileMain}
-				options={{
-					tabBarIcon: ({ focused }) => (
-						<ProfileIcon navigation={navigation} focused={focused} />
-					),
-				}}
-			/>
-		</Tab.Navigator>
-	);
+      <Tab.Screen
+        name="UserProfileMain"
+        component={UserProfileMain}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <ProfileIcon navigation={navigation} focused={focused} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
 };
 export default Tabs;
 
 const styles = StyleSheet.create({
-	shadow: {
-		shadowColor: "#242424",
-		shadowOffset: {
-			width: 0,
-			height: 10,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 3.5,
-		elevation: 5,
-	},
+  shadow: {
+    shadowColor: "#242424",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
 });
