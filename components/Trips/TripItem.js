@@ -6,9 +6,10 @@ import {
 	MaterialCommunityIcons,
 	Feather,
 } from "react-native-vector-icons";
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import { Avatar } from "react-native-elements";
-import { Pressable } from "native-base";
+import { View, Image, TouchableOpacity } from "react-native";
+import { Avatar, Text } from "react-native-elements";
+import { Flex, HStack, Pressable, Stack } from "native-base";
+import Moment from "react-moment";
 
 // Stores
 import { baseURL } from "../../stores/instance";
@@ -135,7 +136,7 @@ const TripItem = ({ trip, navigation }) => {
 					</TouchableOpacity>
 				</View>
 			</View>
-			<View style={{ flexDirection: "row", alignItems: "center" }}>
+			<View style={{ flexDirection: "column", alignItems: "center" }}>
 				<View
 					style={{
 						marginTop: 6,
@@ -148,7 +149,7 @@ const TripItem = ({ trip, navigation }) => {
 					}}
 				>
 					<AntDesign name="like2" size={20} color="#e7e7e7" />
-					<Text style={{ marginLeft: -97, color: "#e7e7e7" }}>Like</Text>
+					<Text style={{ marginLeft: -80, color: "#e7e7e7" }}>Like</Text>
 
 					<TouchableOpacity>
 						<TouchableOpacity
@@ -176,6 +177,21 @@ const TripItem = ({ trip, navigation }) => {
 						<Text style={{ marginLeft: 5, color: "#e7e7e7" }}>Share</Text>
 					</TouchableOpacity>
 				</View>
+
+				<Moment
+					style={{
+						color: "#737373",
+						letterSpacing: 2,
+						fontSize: 13,
+						fontWeight: "bold",
+						marginTop: 10,
+						marginLeft: 10,
+						alignSelf: "flex-start",
+					}}
+					element={Text}
+					format="YYYY/MM/DD  HH:mm"
+					date={new Date(trip.createdAt)}
+				/>
 			</View>
 		</View>
 	);
