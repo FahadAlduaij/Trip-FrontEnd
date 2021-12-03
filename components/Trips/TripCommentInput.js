@@ -7,6 +7,7 @@ import {
 	Button,
 	Input,
 	VStack,
+	Flex,
 } from "native-base";
 import { StyleSheet } from "react-native";
 
@@ -23,29 +24,33 @@ const TripCommentInput = ({ tripId }) => {
 	};
 
 	return (
-		<VStack width="90%" mx="3" my="3">
-			<Container>
+		<Container mx="3" my="3">
+			<VStack w="100%">
 				<FormControl>
 					<FormControl.Label _text={{ bold: true, color: "#fff" }}>
 						Add Comments
 					</FormControl.Label>
 					<Input
+						p="3"
+						color="#fff"
 						placeholder=" Enter Comment"
 						onChangeText={(message) => setUserComment({ message: message })}
+						variant="rounded"
+						my="1"
 					/>
 					{/* <FormControl.HelperText _text={{ fontSize: "xs" }}>
 						Name should contain atleast 3 character.
-					</FormControl.HelperText> */}
+					</FormControl.HelperText>
 					<FormControl.ErrorMessage _text={{ fontSize: "xs" }}>
 						Error Name
-					</FormControl.ErrorMessage>
+					</FormControl.ErrorMessage> */}
 				</FormControl>
 
 				<Button style={styles.btnSubmit} onPress={handleSubmit}>
-					Submit
+					Send
 				</Button>
-			</Container>
-		</VStack>
+			</VStack>
+		</Container>
 	);
 };
 

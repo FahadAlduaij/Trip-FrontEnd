@@ -136,7 +136,10 @@ class TripStore {
 			const upDateTrip = this.trips.find((trip) => trip._id === tripId);
 			const res = await instance.post(`/trips/${tripId}/comments`, commentInfo);
 
-			upDateTrip.comments.push(res.data);
+			runInAction(() => {
+				upDateTrip.comments.push(res.data);
+				upDateTrip.comments.sort();
+			});
 
 			toast.show({
 				title: "Comment Sent",

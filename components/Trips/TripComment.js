@@ -13,11 +13,15 @@ const TripComments = ({ tripId }) => {
 	const trip = tripStore.trips.find((trip) => trip._id === tripId);
 	// if (!trip.comments.length >= 1) return <Text>Be The First to Comment</Text>;
 
-	const commentsList = trip.comments.map((comment) => (
-		<TripCommentItem key={comment._id} comment={comment} />
-	));
+	if (trip) {
+		const commentsList = trip.comments
+			.map((comment) => <TripCommentItem key={comment._id} comment={comment} />)
+			.reverse();
 
-	return <Box mb="10">{commentsList}</Box>;
+		return <Box mb="10">{commentsList}</Box>;
+	} else {
+		return <Box></Box>;
+	}
 };
 
 export default observer(TripComments);

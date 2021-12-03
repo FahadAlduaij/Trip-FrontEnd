@@ -13,6 +13,7 @@ import {
 } from "native-base";
 import { Button, Avatar } from "react-native-elements";
 import { observer } from "mobx-react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 // Components
 import EditTripModal from "./EditTripModal";
@@ -33,116 +34,118 @@ const TripDetail = ({ route, navigation }) => {
 	};
 
 	return (
-		<View style={styles.container}>
-			<ScrollView>
-				<Pressable
-					onPress={() => navigation.navigate("ProfilePage", { trip: trip })}
-				>
-					<View
-						style={{
-							flexDirection: "row",
-							alignItems: "center",
-							padding: 10,
-							paddingLeft: 15,
-							borderTopColor: "black",
-							borderTopWidth: 0.5,
-							backgroundColor: "transparent",
-							marginTop: 20,
-						}}
+		<KeyboardAwareScrollView>
+			<View style={styles.container}>
+				<ScrollView>
+					<Pressable
+						onPress={() => navigation.navigate("ProfilePage", { trip: trip })}
 					>
-						<Avatar
-							size="medium"
-							rounded
-							source={{ uri: baseURL + user.image }}
-						/>
-
-						<View style={{ marginLeft: 10, marginBottom: 5 }}>
-							<Text
-								style={{ fontSize: 16, fontWeight: "bold", color: "white" }}
-							>
-								{user.name}
-							</Text>
-						</View>
-					</View>
-				</Pressable>
-				<View style={{ alignItems: "center", marginHorizontal: 0 }}>
-					<Image
-						style={styles.tripImg}
-						source={{ uri: baseURL + trip.image }}
-						alt="trip image description"
-					/>
-					<Text style={styles.name}>{trip.title}</Text>
-
-					<Text style={styles.description}>{trip.description}</Text>
-				</View>
-				<View style={styles.starContainer}>
-					<Image
-						style={styles.star}
-						source={{
-							uri: "https://img.icons8.com/color/40/000000/star.png",
-						}}
-						alt="Start 1"
-					/>
-					<Image
-						style={styles.star}
-						source={{
-							uri: "https://img.icons8.com/color/40/000000/star.png",
-						}}
-						alt="Start 2"
-					/>
-					<Image
-						style={styles.star}
-						source={{
-							uri: "https://img.icons8.com/color/40/000000/star.png",
-						}}
-						alt="Start 3"
-					/>
-					<Image
-						style={styles.star}
-						source={{
-							uri: "https://img.icons8.com/color/40/000000/star.png",
-						}}
-						alt="Start 4"
-					/>
-					<Image
-						style={styles.star}
-						source={{
-							uri: "https://img.icons8.com/color/40/000000/star.png",
-						}}
-						alt="Start 5"
-					/>
-				</View>
-				<View style={styles.addToListContainer}>
-					<Button
-						title="Add to list"
-						buttonStyle={{
-							backgroundColor: "#154c79",
-							alignItems: "center",
-						}}
-						containerStyle={{ width: "82%", marginTop: 10 }}
-					/>
-				</View>
-				<Center>
-					<HStack mt="5">
-						<EditTripModal trip={trip} />
-
-						<Button
-							title="Delete"
-							buttonStyle={{
-								backgroundColor: "#dc2626",
-								margin: 5,
-								width: 100,
+						<View
+							style={{
+								flexDirection: "row",
+								alignItems: "center",
+								padding: 10,
+								paddingLeft: 15,
+								borderTopColor: "black",
+								borderTopWidth: 0.5,
+								backgroundColor: "transparent",
+								marginTop: 20,
 							}}
-							onPress={handleDelete}
-						/>
-					</HStack>
+						>
+							<Avatar
+								size="medium"
+								rounded
+								source={{ uri: baseURL + user.image }}
+							/>
 
-					<Divider mt="10" />
+							<View style={{ marginLeft: 10, marginBottom: 5 }}>
+								<Text
+									style={{ fontSize: 16, fontWeight: "bold", color: "white" }}
+								>
+									{user.name}
+								</Text>
+							</View>
+						</View>
+					</Pressable>
+					<View style={{ alignItems: "center", marginHorizontal: 0 }}>
+						<Image
+							style={styles.tripImg}
+							source={trip.image ? { uri: baseURL + trip.image } : ""}
+							alt="trip image description"
+						/>
+						<Text style={styles.name}>{trip.title}</Text>
+
+						<Text style={styles.description}>{trip.description}</Text>
+					</View>
+					<View style={styles.starContainer}>
+						<Image
+							style={styles.star}
+							source={{
+								uri: "https://img.icons8.com/color/40/000000/star.png",
+							}}
+							alt="Start 1"
+						/>
+						<Image
+							style={styles.star}
+							source={{
+								uri: "https://img.icons8.com/color/40/000000/star.png",
+							}}
+							alt="Start 2"
+						/>
+						<Image
+							style={styles.star}
+							source={{
+								uri: "https://img.icons8.com/color/40/000000/star.png",
+							}}
+							alt="Start 3"
+						/>
+						<Image
+							style={styles.star}
+							source={{
+								uri: "https://img.icons8.com/color/40/000000/star.png",
+							}}
+							alt="Start 4"
+						/>
+						<Image
+							style={styles.star}
+							source={{
+								uri: "https://img.icons8.com/color/40/000000/star.png",
+							}}
+							alt="Start 5"
+						/>
+					</View>
+					<View style={styles.addToListContainer}>
+						<Button
+							title="Add to list"
+							buttonStyle={{
+								backgroundColor: "#154c79",
+								alignItems: "center",
+							}}
+							containerStyle={{ width: "82%", marginTop: 10 }}
+						/>
+					</View>
+					<Center>
+						<HStack mt="5">
+							<EditTripModal trip={trip} />
+
+							<Button
+								title="Delete"
+								buttonStyle={{
+									backgroundColor: "#dc2626",
+									margin: 5,
+									width: 100,
+								}}
+								onPress={handleDelete}
+							/>
+						</HStack>
+
+						<Divider mt="10" />
+					</Center>
 					<TripCommentInput tripId={trip._id} />
 					<TripComment tripId={trip._id} />
-				</Center>
-			</ScrollView>
-		</View>
+				</ScrollView>
+			</View>
+		</KeyboardAwareScrollView>
 	);
 };
 
