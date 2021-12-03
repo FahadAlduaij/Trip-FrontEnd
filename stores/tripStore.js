@@ -130,6 +130,29 @@ class TripStore {
 			});
 		}
 	};
+
+	createCommentForTrip = async (tripId, commentInfo, toast) => {
+		try {
+			const upDateTrip = this.trips.find((trip) => trip._id === tripId);
+			const res = await instance.post(`/trips/${tripId}/comments`, commentInfo);
+
+			upDateTrip.comments.push(res.data);
+
+			toast.show({
+				title: "Comment Sent",
+				status: "success",
+				placement: "top",
+			});
+		} catch (error) {
+			console.log(error);
+			toast.show({
+				title: "Try Again",
+				status: "error",
+				description: "Something is wrong, please try again.",
+				placement: "top",
+			});
+		}
+	};
 }
 
 const tripStore = new TripStore();
